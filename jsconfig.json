@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "checkJs": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "ignoreDeprecations": "6.0",
     "target": "ES2022"
   },
