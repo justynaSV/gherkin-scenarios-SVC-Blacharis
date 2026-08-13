@@ -1,58 +1,58 @@
 const assert = require('node:assert/strict');
 const { Given, When, Then, world } = require('@cucumber/cucumber');
 
-Given('użytkownik otwiera kreator nowej naprawy w kroku {string}', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik otwiera kreator nowej naprawy w kroku "Informacje dodatkowe"")
+Given('naprawa ma zaplanowane w kolejce zdarzenie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa ma zaplanowane w kolejce zdarzenie "Potwierdzenie wizyty"")
   return 'pending';
 });
 
-When('doradca wyświetla pole {string}', async (value) => {
-  // TODO: implement this step (from feature step: "doradca wyświetla pole "Oferta dosprzedaży"")
+Given('wiadomość potwierdzenia wizyty nie została jeszcze wysłana', async () => {
+  // TODO: implement this step (from feature step: "wiadomość potwierdzenia wizyty nie została jeszcze wysłana")
   return 'pending';
 });
 
-Then('pole {string} ma domyślnie zaznaczoną wartość {string}', async (value1, value2) => {
-  // TODO: implement this step (from feature step: "pole "Oferta dosprzedaży" ma domyślnie zaznaczoną wartość "Bez oferty"")
+When('doradca anuluje naprawę', async () => {
+  // TODO: implement this step (from feature step: "doradca anuluje naprawę")
   return 'pending';
 });
 
-Then('lista pola {string} zawiera wyłącznie aktywne szablony ofert pobrane z VS', async (value) => {
-  // TODO: implement this step (from feature step: "lista pola "Oferta dosprzedaży" zawiera wyłącznie aktywne szablony ofert pobrane z VS")
+Then('system usuwa zaplanowane zdarzenie {string} z kolejki wysyłkowej', async (value) => {
+  // TODO: implement this step (from feature step: "system usuwa zaplanowane zdarzenie "Potwierdzenie wizyty" z kolejki wysyłkowej")
   return 'pending';
 });
 
-Given('w konfiguracji VS istnieje szablon oferty dosprzedaży {string} w statusie {string}', async (value1, value2) => {
-  // TODO: implement this step (from feature step: "w konfiguracji VS istnieje szablon oferty dosprzedaży "Przegląd okresowy" w statusie "<status>"")
+Given('naprawa ma zaplanowane w kolejce zdarzenie {string} na podstawie dotychczasowej daty przyjęcia', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa ma zaplanowane w kolejce zdarzenie "Potwierdzenie wizyty" na podstawie dotychczasowej daty przyjęcia")
   return 'pending';
 });
 
-When('użytkownik otwiera pole wyboru {string} w kreatorze naprawy', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik otwiera pole wyboru "Oferta dosprzedaży" w kreatorze naprawy")
+When('doradca zmienia planowaną datę przyjęcia naprawy', async () => {
+  // TODO: implement this step (from feature step: "doradca zmienia planowaną datę przyjęcia naprawy")
   return 'pending';
 });
 
-Then('doradca {string} szablon {string} na liście', async (value1, value2) => {
-  // TODO: implement this step (from feature step: "doradca "<widocznosc>" szablon "Przegląd okresowy" na liście")
+Then('system aktualizuje termin zaplanowanego zdarzenia {string} zgodnie z nową datą przyjęcia', async (value) => {
+  // TODO: implement this step (from feature step: "system aktualizuje termin zaplanowanego zdarzenia "Potwierdzenie wizyty" zgodnie z nową datą przyjęcia")
   return 'pending';
 });
 
-Given('doradca wypełnia dane naprawy w kreatorze nowej naprawy', async () => {
-  // TODO: implement this step (from feature step: "doradca wypełnia dane naprawy w kreatorze nowej naprawy")
+When('doradca zmienia numer telefonu klienta lub wybraną ofertę dosprzedaży na naprawie', async () => {
+  // TODO: implement this step (from feature step: "doradca zmienia numer telefonu klienta lub wybraną ofertę dosprzedaży na naprawie")
   return 'pending';
 });
 
-Given('doradca pozostawia pole {string} z wartością {string}', async (value1, value2) => {
-  // TODO: implement this step (from feature step: "doradca pozostawia pole "Oferta dosprzedaży" z wartością "Bez oferty"")
+Then('system pozostawia zaplanowany termin zdarzenia {string} bez zmian', async (value) => {
+  // TODO: implement this step (from feature step: "system pozostawia zaplanowany termin zdarzenia "Potwierdzenie wizyty" bez zmian")
   return 'pending';
 });
 
-When('doradca zapisuje naprawę', async () => {
-  // TODO: implement this step (from feature step: "doradca zapisuje naprawę")
+Then('system pobiera aktualne dane naprawy dopiero w momencie realizacji zdarzenia', async () => {
+  // TODO: implement this step (from feature step: "system pobiera aktualne dane naprawy dopiero w momencie realizacji zdarzenia")
   return 'pending';
 });
 
-Then('naprawa zostaje zapisana bez przypisanej oferty dosprzedaży', async () => {
-  // TODO: implement this step (from feature step: "naprawa zostaje zapisana bez przypisanej oferty dosprzedaży")
+When('doradca usuwa zadanie przyjęcia tej naprawy z kalendarza', async () => {
+  // TODO: implement this step (from feature step: "doradca usuwa zadanie przyjęcia tej naprawy z kalendarza")
   return 'pending';
 });
 
@@ -126,8 +126,8 @@ Then('pole {string} staje się ponownie aktywne do momentu kolejnej wysyłki', a
   return 'pending';
 });
 
-Given('naprawa ma uzupełniony numer rejestracyjny i numer telefonu klienta', async () => {
-  // TODO: implement this step (from feature step: "naprawa ma uzupełniony numer rejestracyjny i numer telefonu klienta")
+Given('naprawa utworzona w kreatorze ma uzupełniony numer rejestracyjny i numer telefonu klienta', async () => {
+  // TODO: implement this step (from feature step: "naprawa utworzona w kreatorze ma uzupełniony numer rejestracyjny i numer telefonu klienta")
   return 'pending';
 });
 
@@ -156,8 +156,8 @@ Then('zdarzenie jest zaplanowane na {int} godziny po planowanej dacie przyjęcia
   return 'pending';
 });
 
-Given('naprawa ma dane naprawy w stanie {string}', async (value) => {
-  // TODO: implement this step (from feature step: "naprawa ma dane naprawy w stanie "<dane_naprawy>"")
+Given('naprawa założona w kreatorze ma dane naprawy w stanie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa założona w kreatorze ma dane naprawy w stanie "<dane_naprawy>"")
   return 'pending';
 });
 
@@ -193,61 +193,6 @@ When('naprawa zostaje zakolejkowana do wysyłki', async () => {
 
 Then('zdarzenie {string} jest zaplanowane na {string}', async (value1, value2) => {
   // TODO: implement this step (from feature step: "zdarzenie "Potwierdzenie wizyty" jest zaplanowane na "15.08.2026 13:00"")
-  return 'pending';
-});
-
-Given('naprawa ma zaplanowane w kolejce zdarzenie {string}', async (value) => {
-  // TODO: implement this step (from feature step: "naprawa ma zaplanowane w kolejce zdarzenie "Potwierdzenie wizyty"")
-  return 'pending';
-});
-
-Given('wiadomość potwierdzenia wizyty nie została jeszcze wysłana', async () => {
-  // TODO: implement this step (from feature step: "wiadomość potwierdzenia wizyty nie została jeszcze wysłana")
-  return 'pending';
-});
-
-When('doradca anuluje naprawę', async () => {
-  // TODO: implement this step (from feature step: "doradca anuluje naprawę")
-  return 'pending';
-});
-
-Then('system usuwa zaplanowane zdarzenie {string} z kolejki wysyłkowej', async (value) => {
-  // TODO: implement this step (from feature step: "system usuwa zaplanowane zdarzenie "Potwierdzenie wizyty" z kolejki wysyłkowej")
-  return 'pending';
-});
-
-Given('naprawa ma zaplanowane w kolejce zdarzenie {string} na podstawie dotychczasowej daty przyjęcia', async (value) => {
-  // TODO: implement this step (from feature step: "naprawa ma zaplanowane w kolejce zdarzenie "Potwierdzenie wizyty" na podstawie dotychczasowej daty przyjęcia")
-  return 'pending';
-});
-
-When('doradca zmienia planowaną datę przyjęcia naprawy', async () => {
-  // TODO: implement this step (from feature step: "doradca zmienia planowaną datę przyjęcia naprawy")
-  return 'pending';
-});
-
-Then('system aktualizuje termin zaplanowanego zdarzenia {string} zgodnie z nową datą przyjęcia', async (value) => {
-  // TODO: implement this step (from feature step: "system aktualizuje termin zaplanowanego zdarzenia "Potwierdzenie wizyty" zgodnie z nową datą przyjęcia")
-  return 'pending';
-});
-
-When('doradca zmienia numer telefonu klienta lub wybraną ofertę dosprzedaży na naprawie', async () => {
-  // TODO: implement this step (from feature step: "doradca zmienia numer telefonu klienta lub wybraną ofertę dosprzedaży na naprawie")
-  return 'pending';
-});
-
-Then('system pozostawia zaplanowany termin zdarzenia {string} bez zmian', async (value) => {
-  // TODO: implement this step (from feature step: "system pozostawia zaplanowany termin zdarzenia "Potwierdzenie wizyty" bez zmian")
-  return 'pending';
-});
-
-Then('system pobiera aktualne dane naprawy dopiero w momencie realizacji zdarzenia', async () => {
-  // TODO: implement this step (from feature step: "system pobiera aktualne dane naprawy dopiero w momencie realizacji zdarzenia")
-  return 'pending';
-});
-
-When('doradca usuwa zadanie przyjęcia tej naprawy z kalendarza', async () => {
-  // TODO: implement this step (from feature step: "doradca usuwa zadanie przyjęcia tej naprawy z kalendarza")
   return 'pending';
 });
 
@@ -316,8 +261,8 @@ Then('VS otrzymuje w sekcji Kontakt imię i nazwisko zleceniodawcy', async () =>
   return 'pending';
 });
 
-Given('naprawa ma przypisany szablon oferty dosprzedaży w momencie wysyłki wiadomości', async () => {
-  // TODO: implement this step (from feature step: "naprawa ma przypisany szablon oferty dosprzedaży w momencie wysyłki wiadomości")
+Given('naprawa utworzona w kreatorze ma przypisany szablon oferty dosprzedaży w momencie wysyłki wiadomości', async () => {
+  // TODO: implement this step (from feature step: "naprawa utworzona w kreatorze ma przypisany szablon oferty dosprzedaży w momencie wysyłki wiadomości")
   return 'pending';
 });
 
@@ -336,8 +281,8 @@ Then('wygenerowana wiadomość zawiera zakładkę z ofertą dosprzedaży', async
   return 'pending';
 });
 
-Given('naprawa ma wartość {string} w polu Oferta dosprzedaży w momencie wysyłki wiadomości', async (value) => {
-  // TODO: implement this step (from feature step: "naprawa ma wartość "Bez oferty" w polu Oferta dosprzedaży w momencie wysyłki wiadomości")
+Given('naprawa utworzona w kreatorze ma wartość {string} w polu Oferta dosprzedaży w momencie wysyłki wiadomości', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa utworzona w kreatorze ma wartość "Bez oferty" w polu Oferta dosprzedaży w momencie wysyłki wiadomości")
   return 'pending';
 });
 
@@ -418,5 +363,105 @@ Then('Planer nie zapisuje powiązania z numerem naprawy VS', async () => {
 
 Then('system nie wysyła wiadomości potwierdzenia wizyty do klienta', async () => {
   // TODO: implement this step (from feature step: "system nie wysyła wiadomości potwierdzenia wizyty do klienta")
+  return 'pending';
+});
+
+Given('naprawa założona w formularzu {string} ma uzupełniony numer rejestracyjny i numer telefonu klienta', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa założona w formularzu "Nowa naprawa" ma uzupełniony numer rejestracyjny i numer telefonu klienta")
+  return 'pending';
+});
+
+Given('doradca wybrał szablon oferty dosprzedaży {string} w formularzu {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca wybrał szablon oferty dosprzedaży "Przegląd okresowy" w formularzu "Nowa naprawa"")
+  return 'pending';
+});
+
+When('następuje wyzwolenie zaplanowanego zdarzenia', async () => {
+  // TODO: implement this step (from feature step: "następuje wyzwolenie zaplanowanego zdarzenia")
+  return 'pending';
+});
+
+Then('VS generuje wiadomość zawierającą zakładkę z pytaniami potwierdzenia i zakładkę z ofertą dosprzedaży', async () => {
+  // TODO: implement this step (from feature step: "VS generuje wiadomość zawierającą zakładkę z pytaniami potwierdzenia i zakładkę z ofertą dosprzedaży")
+  return 'pending';
+});
+
+Given('doradca pozostawił pole {string} z wartością {string} w formularzu {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "doradca pozostawił pole "Oferta dosprzedaży" z wartością "Bez oferty" w formularzu "Nowa naprawa"")
+  return 'pending';
+});
+
+Then('VS generuje wiadomość zawierającą wyłącznie zakładkę z pytaniami potwierdzenia', async () => {
+  // TODO: implement this step (from feature step: "VS generuje wiadomość zawierającą wyłącznie zakładkę z pytaniami potwierdzenia")
+  return 'pending';
+});
+
+Given('naprawa została założona w formularzu {string} z wewnętrznym numerem naprawy z Planera {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "naprawa została założona w formularzu "Nowa naprawa" z wewnętrznym numerem naprawy z Planera "PL-2002"")
+  return 'pending';
+});
+
+Given('zdarzenie {string} zostało wyzwolone dla tej naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "zdarzenie "Potwierdzenie wizyty" zostało wyzwolone dla tej naprawy")
+  return 'pending';
+});
+
+Given('zdarzenie {string} zostało wyzwolone dla naprawy założonej w formularzu {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "zdarzenie "Potwierdzenie wizyty" zostało wyzwolone dla naprawy założonej w formularzu "Nowa naprawa"")
+  return 'pending';
+});
+
+Given('użytkownik otwiera kreator nowej naprawy w kroku {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik otwiera kreator nowej naprawy w kroku "Informacje dodatkowe"")
+  return 'pending';
+});
+
+When('doradca wyświetla pole {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca wyświetla pole "Oferta dosprzedaży"")
+  return 'pending';
+});
+
+Then('pole {string} ma domyślnie zaznaczoną wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "pole "Oferta dosprzedaży" ma domyślnie zaznaczoną wartość "Bez oferty"")
+  return 'pending';
+});
+
+Then('lista pola {string} zawiera wyłącznie aktywne szablony ofert pobrane z VS', async (value) => {
+  // TODO: implement this step (from feature step: "lista pola "Oferta dosprzedaży" zawiera wyłącznie aktywne szablony ofert pobrane z VS")
+  return 'pending';
+});
+
+Given('w konfiguracji VS istnieje szablon oferty dosprzedaży {string} w statusie {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "w konfiguracji VS istnieje szablon oferty dosprzedaży "Przegląd okresowy" w statusie "<status>"")
+  return 'pending';
+});
+
+When('użytkownik otwiera pole wyboru {string} w kreatorze naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik otwiera pole wyboru "Oferta dosprzedaży" w kreatorze naprawy")
+  return 'pending';
+});
+
+Then('doradca {string} szablon {string} na liście', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca "<widocznosc>" szablon "Przegląd okresowy" na liście")
+  return 'pending';
+});
+
+Given('doradca wypełnia dane naprawy w kreatorze nowej naprawy', async () => {
+  // TODO: implement this step (from feature step: "doradca wypełnia dane naprawy w kreatorze nowej naprawy")
+  return 'pending';
+});
+
+Given('doradca pozostawia pole {string} z wartością {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca pozostawia pole "Oferta dosprzedaży" z wartością "Bez oferty"")
+  return 'pending';
+});
+
+When('doradca zapisuje naprawę', async () => {
+  // TODO: implement this step (from feature step: "doradca zapisuje naprawę")
+  return 'pending';
+});
+
+Then('naprawa zostaje zapisana bez przypisanej oferty dosprzedaży', async () => {
+  // TODO: implement this step (from feature step: "naprawa zostaje zapisana bez przypisanej oferty dosprzedaży")
   return 'pending';
 });
