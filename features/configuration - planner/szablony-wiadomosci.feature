@@ -7,32 +7,43 @@ Feature: Konfiguracja szablonów wiadomości Planera
     Given użytkownik jest zalogowany do konfiguracji VS
     And użytkownik ma dostęp do sekcji "Szablony wiadomości"
 
-  # AC1: Dostępna jest nowa podsekcja dla szablonów Planera i zapisuje szablony jako nowy typ.
+  # AC1: Dostępna jest nowa podsekcja dla szablonów Planera
   @smoke @regression @ui
   Scenario: Wyświetlenie podsekcji Szablony Planera w konfiguracji VS
     Given użytkownik ma rolę "Administrator Systemu"
     When użytkownik przechodzi do menu "Wiadomości"
     And użytkownik wybiera sekcję "Szablony wiadomości"
-    Then użytkownik widzi podsekcję "Szablony Planera"
-    When użytkownik wybiera podsekcję "Szablony Planera"
-    Then użytkownik widzi listę szablonów Planera
-    And szablony na liście mają typ "Szablon wiadomości Planera"
+    Then użytkownik widzi podsekcję "Planer serwisu"
+    And użytkownik widzi podsekcję "Nowe i aktywne" oraz "Historyczne"
 
-  # AC2, AC5, AC8, AC9, AC10: Nowy szablon zawiera pytania potwierdzenia i standardowe zakładki.
+  # AC2, AC5: Nowy szablon zawiera standardowe zakładki wiadomości i ustawień wysyłki.
   @smoke @regression @ui
-  Scenario: Utworzenie nowego szablonu Potwierdzenie wizyty z pytaniami dotyczącymi wizyty
+  Scenario: Utworzenie nowego szablonu Potwierdzenie wizyty ze standardowymi zakładkami
     Given użytkownik ma rolę "Administrator Systemu"
-    And użytkownik znajduje się w podsekcji "Szablony Planera"
+    And użytkownik znajduje się w podsekcji "Planer serwisu"
     When użytkownik wybiera przycisk "Nowy Szablon"
-    And użytkownik wybiera szablon "Potwierdzenie wizyty"
+    And użytkownik wybiera szablon "Planer serwisu"
     Then system tworzy nowy szablon Planera w statusie "W przygotowaniu"
     And użytkownik widzi standardową zakładkę wiadomości
     And użytkownik widzi standardową zakładkę ustawień wysyłki
-    And użytkownik widzi sekcję "Pytania potwierdzenia"
+
+  # AC8, AC9: Nowy szablon zawiera pytanie dotyczące potwierdzenia wizyty.
+  @smoke @regression @ui
+  Scenario: Nowy szablon zawiera pytanie dotyczące potwierdzenia wizyty
+    Given użytkownik edytuje nowy szablon Planera "Potwierdzenie wizyty"
+    When użytkownik widzi sekcję "Pytania"
+    Then pytanie "Czy potwierdzasz termin wizyty?" jest widoczne
     And pytanie o potwierdzenie wizyty ma domyślną treść z tagami dnia i godziny wizyty
-    And pytanie o potwierdzenie wizyty udostępnia 3 odpowiedzi systemowe
-    And pytanie o oczekiwanie na miejscu ma domyślną treść "Czy będziesz czekał na miejscu na naprawę?"
-    And pytanie o oczekiwanie na miejscu udostępnia 2 odpowiedzi systemowe
+    And pytanie o potwierdzenie wizyty udostępnia 3 odpowiedzi systemowe ("Potwierdzam wizytę", "Chcę zmienić termin", "Rezygnuję z naprawy")
+
+  # AC8, AC10: Nowy szablon zawiera pytania dotyczące czekania na miejscu na naprawę.
+  @smoke @regression @ui
+  Scenario: Nowy szablon zawiera pytanie dotyczące czekania na miejscu na naprawę
+    Given użytkownik edytuje nowy szablon Planera "Potwierdzenie wizyty"
+    When użytkownik widzi sekcję "Pytania"
+    Then pytanie "Czy będziesz czekał na miejscu na naprawę?" jest widoczne
+    And pytanie o potwierdzenie wizyty ma domyślną treść z tagami dnia i godziny wizyty
+    And pytanie o potwierdzenie wizyty udostępnia 2 odpowiedzi systemowe
 
   # AC3: Szablony Planera wspierają statusy i mechanizm nowej wersji.
   @regression @ui

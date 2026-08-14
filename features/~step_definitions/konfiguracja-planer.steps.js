@@ -740,3 +740,35 @@ Then('treść wysłanej wiadomości pochodzi z szablonu Planera {string}', async
   // TODO: implement this step (from feature step: "treść wysłanej wiadomości pochodzi z szablonu Planera "Potwierdzenie wizyty - Oddział Warszawa"")
   return 'pending';
 });
+
+Then('użytkownik widzi podsekcję {string} oraz {string}', (s, s2) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('użytkownik widzi podsekcję {string} oraz {string}', (s, s2) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie {string} jest widoczne', (s) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie {string} jest widoczne', (s) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie {string} jest widoczne', (s) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie {string} jest widoczne', (s) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie o potwierdzenie wizyty udostępnia {int} odpowiedzi systemowe \({string}, {string}, {string})', (int, s, s2, s3) => {
+  // Write code here that turns the phrase above into concrete actions
+})
+
+Then('pytanie o potwierdzenie wizyty udostępnia {int} odpowiedzi systemowe \({string}, {string}, {string})', (int, s, s2, s3) => {
+  // Write code here that turns the phrase above into concrete actions
+})
