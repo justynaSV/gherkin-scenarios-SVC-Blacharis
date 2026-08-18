@@ -225,3 +225,8 @@ Then('użytkownik nie widzi niekompletnych danych Klienta ani Pojazdu', async ()
   // TODO: implement this step (from feature step: "użytkownik nie widzi niekompletnych danych Klienta ani Pojazdu")
   return 'pending';
 });
+
+Then('użytkownik widzi przycisk {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik widzi przycisk "Zadzwoń do doradcy"")
+  return 'pending';
+});

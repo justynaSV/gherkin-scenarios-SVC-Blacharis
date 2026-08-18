@@ -15,20 +15,21 @@ Feature: Widok wiadomości SMS z potwierdzeniem wizyty i ofertą dosprzedaży
     And użytkownik widzi logotyp serwisu w widoku
     And użytkownik widzi stopkę zgodną z szablonem na dole widoku
 
-  # AC2: Dynamika komunikatu nagłówkowego w zależności od obecności oferty dosprzedaży.
+  # AC2: jeden, jednolity komunikat nagłówkowy niezależnie od obecności oferty dosprzedaży (decyzja zespołu 2026-08-12).
+  # Założenie: dokładne brzmienie oznaczone w SVCLOUD-5514 jako „do doprecyzowania” — użyto aktualnego draftu z opisu.
   @smoke @regression
-  Scenario Outline: Wyświetlenie komunikatu nagłówkowego w zależności od zawartości wiadomości
+  Scenario Outline: Wyświetlenie tego samego komunikatu nagłówkowego niezależnie od zawartości wiadomości
     Given wiadomość Planera "<zawartosc>"
     When klient otwiera unikalny link z wiadomości SMS
-    Then użytkownik widzi w nagłówku tekst "<tekst_naglowka>"
+    Then użytkownik widzi w nagłówku tekst "Prosimy o udzielenie odpowiedzi na wszystkie zawarte punkty."
 
     Examples:
-      | zawartosc                               | tekst_naglowka                                                                                     |
-      | zawiera wyłącznie pytania                | Uprzejmie prosimy o udzielenie odpowiedzi na poniższe pytania                                       |
-      | zawiera pytania oraz ofertę dosprzedaży  | Uprzejmie prosimy o udzielenie odpowiedzi na poniższe pytania oraz o podjęcie decyzji do oferty.    |
+      | zawartosc                               |
+      | zawiera wyłącznie pytania                |
+      | zawiera pytania oraz ofertę dosprzedaży  |
 
   @translations
-  # AC2: Konfiguracja tłumaczeń komunikatu nagłówkowego widoku wiadomości.
+  # AC2: Konfiguracja tłumaczeń jednolitego komunikatu nagłówkowego widoku wiadomości.
   Scenario Outline: Wyświetlenie poprawnego tłumaczenia komunikatu nagłówkowego w zależności od języka
     Given wiadomość Planera zawiera wyłącznie pytania
     And użytkownik ma ustawiony język interfejsu "<jezyk>"
@@ -36,10 +37,10 @@ Feature: Widok wiadomości SMS z potwierdzeniem wizyty i ofertą dosprzedaży
     Then użytkownik widzi w nagłówku tekst "<tlumaczenie>"
 
     Examples:
-      | jezyk | tlumaczenie                                                    |
-      | pl-PL | Uprzejmie prosimy o udzielenie odpowiedzi na poniższe pytania  |
-      | en    | <to translate>                                                 |
-      | cz    | <to translate>                                                 |
+      | jezyk | tlumaczenie                                                   |
+      | pl-PL | Prosimy o udzielenie odpowiedzi na wszystkie zawarte punkty.  |
+      | en    | <to translate>                                                |
+      | cz    | <to translate>                                                |
 
   # AC3: Widoczność zakładek - "Pytania" zawsze widoczna i domyślna, "Oferta" tylko z pozycjami ankiety.
   @smoke @regression @ui
@@ -132,13 +133,13 @@ Feature: Widok wiadomości SMS z potwierdzeniem wizyty i ofertą dosprzedaży
       | Zgoda   |
       | Odmowa  |
 
-  # AC6: Brak elementów umożliwiających kontakt telefoniczny w widoku wiadomości.
+  # AC6/AC7: sekcja kontaktowa i „Wyślij prośbę o kontakt” usunięte, „Zadzwoń do doradcy” pozostaje (decyzja zespołu 2026-08-17).
   @regression @ui
-  Scenario: Brak elementów kontaktowych w widoku wiadomości
+  Scenario: Usunięcie sekcji kontaktowej przy zachowaniu przycisku Zadzwoń do doradcy
     When klient otwiera unikalny link z wiadomości SMS
     Then użytkownik nie widzi sekcji "W razie pytań zapraszamy do kontaktu:"
     And użytkownik nie widzi przycisku "Wyślij prośbę o kontakt"
-    And użytkownik nie widzi przycisku "Zadzwoń do..."
+    And użytkownik widzi przycisk "Zadzwoń do doradcy"
 
   # Edge case: link z wiadomości SMS jest nieprawidłowy lub wygasł.
   @regression @security

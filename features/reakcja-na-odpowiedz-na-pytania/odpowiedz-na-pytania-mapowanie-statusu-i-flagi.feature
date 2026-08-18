@@ -1,4 +1,4 @@
-# Zadanie QA: SVCLOUD-5609 — [QA] T11 Odpowiedź planera → notyfikacja Workshop → mapowanie status/flaga (AC1/AC2)
+# Zadanie QA: SVCLOUD-5609 — [QA] T9 (placeholder) odpowiedź → notyfikacja → mapowanie na Workshop (AC1/AC2)
 @odpowiedz-na-pytania-mapowanie-statusu-i-flagi
 Feature: Automatyczne mapowanie odpowiedzi klienta na status i flagę „Klient czeka”
   Jako Doradca serwisowy chcę, aby odpowiedzi klienta na pytania potwierdzenia wizyty

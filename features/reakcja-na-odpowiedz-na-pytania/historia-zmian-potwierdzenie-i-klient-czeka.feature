@@ -1,4 +1,4 @@
-# Zadanie QA: SVCLOUD-5611 — [QA] T14 Historia zmian przez standardowy UpdateRepair (AC3, zależność S11)
+# Zadanie QA: SVCLOUD-5611 — [QA] T12 (placeholder) Historia zmian naprawy (AC3, zależność S11)
 @historia-zmian-potwierdzenie-i-klient-czeka
 Feature: Rejestracja w Historii zmian aktualizacji potwierdzenia wizyty i flagi Klient czeka
   Jako Doradca serwisowy chcę, aby każda automatyczna zmiana statusu potwierdzenia wizyty i flagi Klient czeka

@@ -1,4 +1,4 @@
-# Zadanie QA: SVCLOUD-5613 — [QA] T12 Brak blokady wg statusu, ostatnia odpowiedź wygrywa (AC1/AC2, AC4 usunięte)
+# Zadanie QA: SVCLOUD-5613 — [QA] T10 (placeholder) brak blokady / ostatnia odpowiedź wygrywa (AC1/AC2, AC4 usunięte)
 @brak-blokady-wg-statusu-ostatnia-odpowiedz
 Feature: Brak blokady statusu naprawy i priorytet ostatniej odpowiedzi klienta
   Jako Doradca serwisowy chcę, aby odpowiedź klienta była zawsze przetwarzana niezależnie od statusu naprawy,
