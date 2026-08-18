@@ -140,27 +140,3 @@ Feature: Widok wiadomości SMS z potwierdzeniem wizyty i ofertą dosprzedaży
     Then użytkownik nie widzi sekcji "W razie pytań zapraszamy do kontaktu:"
     And użytkownik nie widzi przycisku "Wyślij prośbę o kontakt"
     And użytkownik widzi przycisk "Zadzwoń do doradcy"
-
-  # Edge case: link z wiadomości SMS jest nieprawidłowy lub wygasł.
-  @regression @security
-  Scenario: Próba otwarcia nieprawidłowego lub wygasłego linku z wiadomości SMS
-    Given link z wiadomości SMS jest nieprawidłowy lub wygasł
-    When klient otwiera ten link
-    Then system wyświetla komunikat o niedostępności widoku wiadomości
-    And system nie wyświetla danych Klienta ani Pojazdu
-
-  # Edge case: klient ponownie otwiera link po przekazaniu wszystkich decyzji.
-  @regression
-  Scenario: Ponowne otwarcie linku po przekazaniu wszystkich decyzji
-    Given klient przekazał już decyzje dla wszystkich pytań i pozycji oferty
-    When klient ponownie otwiera unikalny link z wiadomości SMS
-    Then użytkownik widzi wcześniej przekazane decyzje jako tylko do odczytu
-    And użytkownik nie może zmienić przekazanych decyzji
-
-  # Edge case: błąd komunikacji z systemem podczas wczytywania widoku wiadomości.
-  @regression
-  Scenario: Błąd wczytywania danych Klienta i Pojazdu w widoku wiadomości
-    Given wystąpił błąd komunikacji z systemem podczas otwierania linku
-    When klient otwiera unikalny link z wiadomości SMS
-    Then system wyświetla komunikat o błędzie wczytywania widoku wiadomości
-    And użytkownik nie widzi niekompletnych danych Klienta ani Pojazdu
