@@ -1,4 +1,4 @@
-# Zadanie QA: SVCLOUD-5614 — [QA] T11 (placeholder) anulowanie/przeplanowanie → wygaśnięcie ankiety (AC8)
+# Zadanie QA: SVCLOUD-5640 — [QA] T11 (placeholder): anulowanie/przeplanowanie → RO w Public Client (AC8)
 @tryb-ro-public-client-po-anulowaniu-przeplanowaniu
 Feature: Tryb tylko do odczytu w Public Client po anulowaniu lub przeplanowaniu naprawy
   Jako Doradca serwisowy chcę, aby Public Client klienta przechodził w tryb tylko do odczytu po zmianie naprawy,
