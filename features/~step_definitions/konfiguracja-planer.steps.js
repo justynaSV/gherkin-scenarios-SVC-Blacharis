@@ -772,3 +772,173 @@ Then('pytanie o potwierdzenie wizyty udostępnia {int} odpowiedzi systemowe \({s
 Then('pytanie o potwierdzenie wizyty udostępnia {int} odpowiedzi systemowe \({string}, {string}, {string})', (int, s, s2, s3) => {
   // Write code here that turns the phrase above into concrete actions
 })
+
+When('użytkownik przechodzi do sekcji {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik przechodzi do sekcji "Ankiety"")
+  return 'pending';
+});
+
+Then('użytkownik widzi w lewym menu podsekcję {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik widzi w lewym menu podsekcję "Oferty Planera"")
+  return 'pending';
+});
+
+Given('użytkownik edytuje szablon Oferty Planera', async () => {
+  // TODO: implement this step (from feature step: "użytkownik edytuje szablon Oferty Planera")
+  return 'pending';
+});
+
+Then('użytkownik nie widzi akcji {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik nie widzi akcji "Nowy formularz"")
+  return 'pending';
+});
+
+Then('system automatycznie tworzy formularz o nazwie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "system automatycznie tworzy formularz o nazwie "Edycja oferty"")
+  return 'pending';
+});
+
+Then('system automatycznie tworzy grupę o nazwie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "system automatycznie tworzy grupę o nazwie "Oferta"")
+  return 'pending';
+});
+
+Then('formularz i grupa posiadają domyślne tłumaczenia systemowe', async () => {
+  // TODO: implement this step (from feature step: "formularz i grupa posiadają domyślne tłumaczenia systemowe")
+  return 'pending';
+});
+
+Then('użytkownik nie może zmienić nazwy grupy {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik nie może zmienić nazwy grupy "Oferta"")
+  return 'pending';
+});
+
+Then('użytkownik nie może usunąć grupy {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik nie może usunąć grupy "Oferta"")
+  return 'pending';
+});
+
+Then('użytkownik nie widzi opcji dodania nowej grupy', async () => {
+  // TODO: implement this step (from feature step: "użytkownik nie widzi opcji dodania nowej grupy")
+  return 'pending';
+});
+
+When('użytkownik dodaje nową pozycję do grupy {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik dodaje nową pozycję do grupy "Oferta"")
+  return 'pending';
+});
+
+Then('formularz pozycji zawiera wymagane pole {string}', async (value) => {
+  // TODO: implement this step (from feature step: "formularz pozycji zawiera wymagane pole "Uwagi"")
+  return 'pending';
+});
+
+Then('formularz pozycji nie zawiera pola {string}', async (value) => {
+  // TODO: implement this step (from feature step: "formularz pozycji nie zawiera pola "Nazwa"")
+  return 'pending';
+});
+
+When('użytkownik wprowadza w polu {string} wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "użytkownik wprowadza w polu "Cena" wartość "<wartosc>"")
+  return 'pending';
+});
+
+Given('użytkownik edytuje szablon Oferty Planera z dodaną pozycją {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik edytuje szablon Oferty Planera z dodaną pozycją "Wymiana klocków hamulcowych"")
+  return 'pending';
+});
+
+When('użytkownik wybiera ikonę kosza przy pozycji {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik wybiera ikonę kosza przy pozycji "Wymiana klocków hamulcowych"")
+  return 'pending';
+});
+
+Then('pozycja {string} zostaje usunięta z grupy {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "pozycja "Wymiana klocków hamulcowych" zostaje usunięta z grupy "Oferta"")
+  return 'pending';
+});
+
+Then('użytkownik nie może przeciągnąć i upuścić grupy w celu zmiany jej kolejności', async () => {
+  // TODO: implement this step (from feature step: "użytkownik nie może przeciągnąć i upuścić grupy w celu zmiany jej kolejności")
+  return 'pending';
+});
+
+Given('użytkownik edytuje szablon Oferty Planera z co najmniej dwiema pozycjami w grupie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik edytuje szablon Oferty Planera z co najmniej dwiema pozycjami w grupie "Oferta"")
+  return 'pending';
+});
+
+When('użytkownik przeciąga i upuszcza pozycję na nową pozycję w kolejności w obrębie grupy {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik przeciąga i upuszcza pozycję na nową pozycję w kolejności w obrębie grupy "Oferta"")
+  return 'pending';
+});
+
+Then('system zapisuje nową kolejność pozycji w grupie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "system zapisuje nową kolejność pozycji w grupie "Oferta"")
+  return 'pending';
+});
+
+When('użytkownik otwiera formularz dodania pozycji do grupy {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik otwiera formularz dodania pozycji do grupy "Oferta"")
+  return 'pending';
+});
+
+Then('użytkownik nie widzi checkboxa wymagania potwierdzenia klienta', async () => {
+  // TODO: implement this step (from feature step: "użytkownik nie widzi checkboxa wymagania potwierdzenia klienta")
+  return 'pending';
+});
+
+Given('użytkownik dodaje pozycję {string} z ceną {string} do grupy {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "użytkownik dodaje pozycję "Wymiana klocków hamulcowych" z ceną "250" do grupy "Oferta"")
+  return 'pending';
+});
+
+When('użytkownik zapisuje pozycję', async () => {
+  // TODO: implement this step (from feature step: "użytkownik zapisuje pozycję")
+  return 'pending';
+});
+
+Then('system ustawia flagę potwierdzenia klienta na wartość {string} dla zapisanej pozycji', async (value) => {
+  // TODO: implement this step (from feature step: "system ustawia flagę potwierdzenia klienta na wartość "true" dla zapisanej pozycji")
+  return 'pending';
+});
+
+Given('dostępny jest szablon Oferty Planera w statusie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "dostępny jest szablon Oferty Planera w statusie "<status>"")
+  return 'pending';
+});
+
+When('użytkownik otwiera szczegóły szablonu Oferty Planera', async () => {
+  // TODO: implement this step (from feature step: "użytkownik otwiera szczegóły szablonu Oferty Planera")
+  return 'pending';
+});
+
+Given('dostępny jest aktywny szablon Oferty Planera {string}', async (value) => {
+  // TODO: implement this step (from feature step: "dostępny jest aktywny szablon Oferty Planera "Wiosenny przegląd"")
+  return 'pending';
+});
+
+When('użytkownik przypisuje szablon do jednostki organizacyjnej {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik przypisuje szablon do jednostki organizacyjnej "Serwis Centralny"")
+  return 'pending';
+});
+
+Then('szablon Oferty Planera jest dostępny dla jednostki {string}', async (value) => {
+  // TODO: implement this step (from feature step: "szablon Oferty Planera jest dostępny dla jednostki "Serwis Centralny"")
+  return 'pending';
+});
+
+Then('użytkownik nie widzi akcji {string} ani {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "użytkownik nie widzi akcji "Nowy formularz" ani "Wybierz formularz"")
+  return 'pending';
+});
+
+Then('formularz pozycji zawiera wymagane pola {string} i {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "formularz pozycji zawiera wymagane pola "Uwagi" i "Cena"")
+  return 'pending';
+});
+
+Then('formularz pozycji nie zawiera pól {string}, {string} ani {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "formularz pozycji nie zawiera pól "Nazwa", "Stan" ani "Zdjęcia"")
+  return 'pending';
+});
