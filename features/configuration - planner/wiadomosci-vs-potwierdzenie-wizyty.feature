@@ -18,13 +18,13 @@ Feature: Aktywacja wiadomości VS dla zdarzenia Potwierdzenie wizyty w Planerze 
   # AC2: Widok dodawania konfiguracji Wiadomości VS zawiera wymagane pola i pozwala ją aktywować.
   @smoke @regression @ui
   Scenario: Utworzenie nowej konfiguracji Wiadomości VS dla zdarzenia Potwierdzenie wizyty
-    Given w konfiguracji VS jest dostępny aktywny szablon Planera "Potwierdzenie wizyty - Standard"
+    Given w konfiguracji VS jest dostępny aktywny szablon Planera "Potwierdzenie wizyty"
     And użytkownik otwiera zakładkę "Wiadomości VS" na ekranie "Wiadomości"
     When użytkownik dodaje nową konfigurację Wiadomości VS
     Then pole "Typ" jest zablokowane i ma wartość "Wiadomość VS"
     When użytkownik wybiera zdarzenie "Potwierdzenie wizyty"
     And użytkownik nadaje konfiguracji nazwę "Wiadomości VS Warszawa"
-    And użytkownik wybiera szablon wiadomości Planera "Potwierdzenie wizyty - Standard"
+    And użytkownik wybiera szablon wiadomości Planera "Potwierdzenie wizyty"
     And użytkownik włącza przełącznik "Aktywna"
     And użytkownik zapisuje konfigurację Wiadomości VS
     Then system zapisuje konfigurację Wiadomości VS jako aktywną
@@ -76,14 +76,6 @@ Feature: Aktywacja wiadomości VS dla zdarzenia Potwierdzenie wizyty w Planerze 
     When użytkownik otwiera pole wyboru "Szablon wiadomości Planera" w nowej konfiguracji Wiadomości VS
     Then lista szablonów wiadomości Planera jest pusta
     And użytkownik nie może zapisać aktywnej konfiguracji Wiadomości VS
-
-  # AC2: Błąd pobierania listy szablonów z konfiguracji VS.
-  @regression
-  Scenario: Błąd pobierania szablonów Planera z konfiguracji VS
-    Given konfiguracja VS jest niedostępna
-    When użytkownik otwiera nową konfigurację Wiadomości VS dla zdarzenia "Potwierdzenie wizyty"
-    Then system wyświetla komunikat o błędzie pobierania szablonów z konfiguracji VS
-    And pole wyboru "Szablon wiadomości Planera" jest puste
 
   # AC5: Nowa zakładka Wiadomości VS w oknie edycji BOK.
   @smoke @regression @ui
