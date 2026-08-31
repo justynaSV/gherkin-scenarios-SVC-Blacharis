@@ -131,8 +131,8 @@ Feature: Aktywacja wiadomości VS dla zdarzenia Potwierdzenie wizyty w Planerze 
       | wartosc | wynik                                                            |
       | 0       | zapisuje konfigurację z opóźnieniem wysyłki 0 godzin             |
       | 24      | zapisuje konfigurację z opóźnieniem wysyłki 24 godzin            |
-      | -1      | blokuje zapis i wyświetla komunikat o nieprawidłowej wartości    |
-      | abc     | blokuje zapis i wyświetla komunikat o nieprawidłowym formacie    |
+      | -1      | zapisuje konfigurację z czasem wysyłki -1 godzin (czyli na godzinę przed zdarzeniem)|
+      | abc     | blokuje wpisywanie znaków                                        |
 
   # AC6: Kanał wysyłki ograniczony do opcji SMS zgodnych z innymi zdarzeniami BOK.
   @regression
