@@ -1,36 +1,33 @@
-# gherkin-scenarios
+# gherkin-scenarios-SVC-Blacharis
 
-Reusable template for creating project-specific Gherkin scenario repositories.
+Gherkin scenario repository for the SVC Blacharis project, created from the `gherkin-scenarios` template.
 
-Use this repository when a QA team needs a clean starting point for writing scenarios from user stories, validating `.feature` files, tracking traceability, and later adding executable Cucumber.js step definitions.
+This repository holds the `.feature` files and Cucumber.js step definitions used to document and validate SVC Blacharis behavior from user stories, plus the tooling to keep scenarios consistent and traceable.
 
 ## Start Here
 
-If you are setting up a new QA project, start with `docs/getting-started.md`.
+New to this repository? Start with `docs/getting-started.md` — it covers writing scenarios from a user story with the `/gherkin-scenarios` Copilot prompt, saving `.feature` files, updating traceability, adding step definitions, and running validation/Cucumber checks.
 
-That guide walks through the full process:
+For day-to-day work, the short version is:
 
-1. Create or import a project repository from this template.
-2. Open the project in VS Code.
-3. Run first validation.
-4. Customize the prompt and project settings.
-5. Paste a user story into Copilot Chat.
-6. Generate and save a `.feature` file.
-7. Update traceability.
-8. Add step definitions.
-9. Run validation and Cucumber checks.
-10. Commit and open a pull request.
+1. Paste a user story (or a Jira issue key/URL) into Copilot Chat with `/gherkin-scenarios`.
+2. Answer follow-up questions and review the generated scenarios.
+3. Save the `.feature` file under the right module folder in `features/`.
+4. Run `npm run create:module -- <module-folder>` if it's a new module, to scaffold/update step definitions.
+5. Update `docs/traceability.md`.
+6. Add or update step definitions in `features/~step_definitions/`.
+7. Run `npm run validate` (and Cucumber checks, once step definitions exist).
+8. Commit and open a pull request.
 
-## What This Template Gives You
+## What This Repository Contains
 
-- A Copilot prompt for generating Gherkin `.feature` files from pasted user stories.
+- The `/gherkin-scenarios` Copilot prompt for generating Gherkin `.feature` files from pasted user stories, at `.github/prompts/gherkin-scenarios.prompt.md`.
 - A guided workflow document in `docs/getting-started.md`.
-- User story and feature templates in `templates/`.
-- JavaScript and TypeScript step definition templates in `templates/step-definitions/`.
-- Minimal Cucumber.js support files under `features/~support/`.
-- Empty starter folders for project feature files and step definitions.
+- User story and feature templates in `templates/`, used when generating new scenarios.
+- Feature files grouped into module folders under `features/` (for example `features/calendar icons/`, `features/potwierdzenie-wizyty/`).
+- Step definitions and Cucumber.js support files under `features/~step_definitions/` and `features/~support/`.
 - Built-in Gherkin style validation, language validation, duplicate-step detection, and traceability checks.
-- A traceability matrix template in `docs/traceability.md`.
+- A traceability matrix in `docs/traceability.md`.
 - A tag glossary in `docs/tags.md`.
 - GitHub Actions validation for pull requests and pushes to `main`.
 
@@ -67,21 +64,6 @@ scripts/
   create-module.js
 ```
 
-## Create a Project Repository
-
-For the full workflow, use `docs/getting-started.md`.
-
-Short version:
-
-1. Create a new repository from this template.
-2. Rename the package in `package.json`.
-3. Rename `.github/prompts/gherkin-scenarios.prompt.md` if the project needs its own slash command.
-4. Add project-specific rules to the prompt.
-5. Update `.env.example` with safe placeholder URLs for the project.
-6. Add feature files under `features/`.
-7. For every new module folder under `features/`, create a matching step-definition file under `features/~step_definitions/`.
-8. Keep `docs/traceability.md` updated whenever scenarios are added, renamed, or removed.
-
 ## Use The Copilot Prompt
 
 1. Open Copilot Chat in VS Code.
@@ -96,23 +78,23 @@ Short version:
 5. Review the generated assumptions, tags, scenarios, and suggested save path.
 6. Confirm the exact path before Copilot creates folders or saves the `.feature` file.
 
-The prompt asks where to save a feature when no target folder is clear. Feature files should live under `features/`, for example:
+The prompt asks where to save a feature when no target folder is clear. Feature files live under `features/`, grouped by module, for example:
 
 ```text
-features/login/password-reset.feature
-features/orders/order-cancellation.feature
-features/calendar/appointment-rescheduling.feature
+features/calendar icons/wizyta-niepotwierdzona.feature
+features/potwierdzenie-wizyty/nowa-naprawa-oferta-do-sms.feature
+features/reakcja-na-odpowiedz-na-oferte/historia-zmian-dosprzedaz.feature
 ```
 
-Each first-level folder under `features/` is treated as a separate module. When the prompt creates a new module folder such as `features/orders/`, it also runs `npm run create:module -- orders` to generate `features/~step_definitions/orders.steps.js`.
+Each first-level folder under `features/` is treated as a separate module. When the prompt creates a new module folder, it also runs `npm run create:module -- <module-folder>` to generate a matching `features/~step_definitions/<module-folder>.steps.js` file.
 
 You can create the module folder and matching step-definition scaffold manually with:
 
 ```sh
-npm run create:module -- orders
+npm run create:module -- <module-folder>
 ```
 
-This parses every `.feature` file already in `features/orders/` and generates stub functions in `features/~step_definitions/orders.steps.js` using the real Gherkin step text as the Cucumber Expression (not generic placeholders). Steps that already exist in the file are left untouched; only missing ones are appended, so re-running it after editing a feature is safe.
+This parses every `.feature` file already in that module folder and generates stub functions in the matching `.steps.js` file using the real Gherkin step text as the Cucumber Expression (not generic placeholders). Steps that already exist in the file are left untouched; only missing ones are appended, so re-running it after editing a feature is safe.
 
 ## Recommended User Story Format
 
@@ -172,22 +154,14 @@ Validation includes:
 - Duplicate-step detection inside individual scenarios.
 - Traceability coverage checks from `docs/traceability.md`.
 
-The template validates successfully with no feature files. Once a project adds scenarios, the same validation checks the real project content.
-
 ## Step Definitions
 
-Feature files can start as reviewable BDD documentation. When the project is ready to automate them, add step definitions under:
-
-```text
-features/~step_definitions/
-```
-
-Use the templates in `templates/step-definitions/` as a starting point. The detailed workflow is in `docs/getting-started.md`.
+Step definitions live under `features/~step_definitions/`, one file per module. `npm run create:module -- <module-folder>` keeps these files in sync with the `.feature` files (it only appends missing steps, so it's safe to re-run after editing a feature). Use the templates in `templates/step-definitions/` as a starting point for new step implementations.
 
 Module convention:
 
-- `features/orders/` -> `features/~step_definitions/orders.steps.js`
-- `features/password-reset/` -> `features/~step_definitions/password-reset.steps.js`
+- `features/calendar icons/` -> `features/~step_definitions/calendar-icons.steps.js`
+- `features/potwierdzenie-wizyty/` -> `features/~step_definitions/potwierdzenie-wizyty.steps.js`
 
 ## Running BDD Scenarios
 

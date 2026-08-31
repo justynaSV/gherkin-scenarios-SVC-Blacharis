@@ -1,50 +1,12 @@
 # Getting Started
 
-This guide explains how to create a project-specific Gherkin scenario repository from this template, write scenarios from user stories with Copilot, and add step definitions when the scenarios should become executable.
+This guide explains how to write scenarios from user stories with Copilot in this repository, keep traceability up to date, and add step definitions when scenarios should become executable.
 
-## 1. Create or import the repository
-
-Use this repository as the source template. For each QA project, create a separate repository so project rules, tags, fixtures, and automation can evolve independently.
-
-### Option A: Create from a Git hosting template
-
-1. Open the template repository in GitHub or GitLab.
-2. Choose the template creation option, for example **Use this template** in GitHub.
-3. Name the new repository after the project, for example `my-project-gherkin-scenarios`.
-4. Clone the new repository locally:
-
-```sh
-git clone <repository-url>
-cd <repository-folder>
-```
-
-### Option B: Import from Git manually
-
-1. Clone the template repository:
-
-```sh
-git clone <template-repository-url> my-project-gherkin-scenarios
-cd my-project-gherkin-scenarios
-```
-
-2. Remove the template Git remote and connect the project repository:
-
-```sh
-git remote remove origin
-git remote add origin <new-project-repository-url>
-```
-
-3. Push the project repository:
-
-```sh
-git push -u origin main
-```
-
-## 2. Open the project in VS Code
+## 1. Open the repository in VS Code
 
 1. Open VS Code.
 2. Choose **File > Open Folder**.
-3. Select the cloned project folder.
+3. Select this repository's folder.
 4. When VS Code shows a prompt to install the recommended extensions, click **Install All**. Otherwise, install them manually (see below).
 5. Open Copilot Chat.
 
@@ -61,19 +23,7 @@ The prompt file lives at `.github/prompts/gherkin-scenarios.prompt.md`. In Copil
 /gherkin-scenarios
 ```
 
-If the project needs its own command name, rename the prompt file, for example:
-
-```text
-.github/prompts/my-project.prompt.md
-```
-
-After renaming, use the matching command in Copilot Chat:
-
-```text
-/my-project
-```
-
-## 3. Run first validation
+## 2. Run validation
 
 Use Node.js 22.12.0 or newer.
 
@@ -81,7 +31,7 @@ Use Node.js 22.12.0 or newer.
 npm run validate
 ```
 
-Validation is self-contained and does not require `npm install`. The template validates successfully before any feature files are added. After the team adds scenarios, the same command checks the real project content.
+Validation is self-contained and does not require `npm install`. It checks the real feature files already in `features/`.
 
 Install dependencies only when you want to run Cucumber commands such as `npm run bdd:dry-run`, `npm run bdd:smoke`, or `npm run bdd`:
 
@@ -89,27 +39,7 @@ Install dependencies only when you want to run Cucumber commands such as `npm ru
 npm install
 ```
 
-## 4. Customize the template for the project
-
-Before writing the first real scenarios, update the project-specific basics:
-
-1. Change the package name in `package.json`.
-2. Update `.env.example` with safe placeholder URLs for the application under test.
-3. Add project-specific rules to `.github/prompts/gherkin-scenarios.prompt.md`.
-4. Update `docs/tags.md` if the project needs domain-specific tags.
-5. Keep `docs/traceability.md` as the central scenario mapping table.
-
-Good project-specific prompt rules include:
-
-- preferred business vocabulary,
-- supported languages,
-- common roles,
-- required tags,
-- modules under `features/`,
-- scenario types that should always be considered,
-- behavior that should stay out of scope.
-
-## 5. Prepare the user story
+## 3. Prepare the user story
 
 You can paste a full story directly into Copilot Chat. When possible, use this structure:
 
@@ -139,7 +69,7 @@ If some information is missing, the prompt should ask follow-up questions before
 
 ### Optional: use a Jira link instead of pasting the story
 
-Instead of pasting the story text, you can give Copilot a Jira issue link (e.g. `https://<site>.atlassian.net/browse/PROJ-123`) or bare key (`PROJ-123`) in step 6. One-time setup per machine:
+Instead of pasting the story text, you can give Copilot a Jira issue link (e.g. `https://<site>.atlassian.net/browse/PROJ-123`) or bare key (`PROJ-123`) in step 4. One-time setup per machine:
 
 1. Open the Command Palette (`Ctrl+Shift+P`) and run **MCP: Add Server**.
 2. Choose **HTTP**, enter name `atlassian` and URL `https://mcp.atlassian.com/v1/mcp`, then pick the **Global** scope so it's available in every repo, not just this one.
@@ -148,7 +78,7 @@ Instead of pasting the story text, you can give Copilot a Jira issue link (e.g. 
 
 If you skip this setup, just paste the story text as shown above.
 
-## 6. Generate a feature file with Copilot
+## 4. Generate a feature file with Copilot
 
 1. Open Copilot Chat.
 2. Type the prompt command:
@@ -162,25 +92,25 @@ If you skip this setup, just paste the story text as shown above.
 5. Review the assumptions, tags, scenarios, and suggested file path.
 6. Confirm the save path only after the generated feature looks correct.
 
-Feature files should be saved under `features/`. Use subfolders for larger modules, for example:
+Feature files live under `features/`, grouped into module folders, for example:
 
 ```text
-features/login/password-reset.feature
-features/orders/order-cancellation.feature
-features/calendar/appointment-rescheduling.feature
+features/calendar icons/wizyta-niepotwierdzona.feature
+features/potwierdzenie-wizyty/nowa-naprawa-oferta-do-sms.feature
+features/reakcja-na-odpowiedz-na-pytania/historia-zmian-dosprzedaz.feature
 ```
 
 Each first-level folder under `features/` is treated as a separate module. After adding or updating `.feature` files in a module folder, generate the matching step-definition file with:
 
 ```sh
-npm run create:module -- orders
+npm run create:module -- <module-folder>
 ```
 
-This creates `features/orders/` (if it does not exist yet) and generates `features/~step_definitions/orders.steps.js` with one stub per **unique step actually used in that module's feature files** (converted to a Cucumber Expression, e.g. `{string}`/`{int}` placeholders) — not generic placeholder text. Re-run the same command after editing a feature file; it only appends the steps that are still missing, so it never overwrites work you've already implemented.
+This creates the module folder under `features/` (if it does not exist yet) and generates a matching `features/~step_definitions/<module-folder>.steps.js` with one stub per **unique step actually used in that module's feature files** (converted to a Cucumber Expression, e.g. `{string}`/`{int}` placeholders) — not generic placeholder text. Re-run the same command after editing a feature file; it only appends the steps that are still missing, so it never overwrites work you've already implemented.
 
 The Copilot prompt is configured to run `npm run create:module -- <module-folder>` automatically after saving a feature file in a new module folder.
 
-## 7. Update traceability
+## 5. Update traceability
 
 Every scenario should be mapped in `docs/traceability.md`.
 
@@ -189,7 +119,7 @@ Use one row per scenario:
 ```md
 | Story ID | Acceptance criterion | Feature file | Scenario name | Tags |
 | --- | --- | --- | --- | --- |
-| LOGIN-001 | Registered user can sign in | `features/login/login.feature` | Successful login with valid credentials | `@smoke @regression @ui` |
+| S1 | AC1 | `features/konfiguracja-planer/szablony-wiadomosci.feature` | `Wyświetlenie podsekcji Szablony Planera w konfiguracji VS` | `@smoke @regression @ui` |
 ```
 
 Run validation after updating the table:
@@ -198,7 +128,7 @@ Run validation after updating the table:
 npm run validate
 ```
 
-## 8. Create step definitions
+## 6. Create step definitions
 
 Step definitions connect Gherkin text to executable JavaScript or TypeScript code.
 
@@ -211,51 +141,50 @@ features/~step_definitions/
 Use the module name in the file name:
 
 ```text
-features/~step_definitions/login.steps.js
-features/~step_definitions/orders.steps.js
-features/~step_definitions/permissions.steps.js
+features/~step_definitions/calendar-icons.steps.js
+features/~step_definitions/potwierdzenie-wizyty.steps.js
+features/~step_definitions/widok-wiadomosci-sms.steps.js
 ```
 
 Start from the templates in `templates/step-definitions/` when useful.
 
 ### JavaScript example
 
-For this Gherkin scenario:
+For this Gherkin scenario (from `features/widok-wiadomosci-sms/wyglad-wiadomosci-sms.feature`):
 
 ```gherkin
-Scenario: Successful login with valid credentials
-  Given the login page is open
-  When the user signs in with valid credentials
-  Then the dashboard is displayed
+Background:
+  Given klient otrzymał wiadomość SMS z unikalnym linkiem do widoku wiadomości
+
+Scenario: Wyświetlenie sekcji danych Klienta i Pojazdu, logotypu oraz stopki
+  When klient otwiera unikalny link z wiadomości SMS
+  Then użytkownik widzi sekcję z danymi Klienta i Pojazdu na górze widoku
 ```
 
-Create `features/~step_definitions/login.steps.js`:
+`npm run create:module` already scaffolds `features/~step_definitions/widok-wiadomosci-sms.steps.js` with a pending stub per step. Implement the body, for example:
 
 ```js
-const assert = require('assert/strict');
+const assert = require('node:assert/strict');
 const { Given, When, Then, world } = require('@cucumber/cucumber');
 
-Given('the login page is open', async () => {
-  await world.app.openLoginPage();
+Given('klient otrzymał wiadomość SMS z unikalnym linkiem do widoku wiadomości', async () => {
+  world.smsLink = await world.app.sendConfirmationSms();
 });
 
-When('the user signs in with valid credentials', async () => {
-  world.loginResult = await world.app.login({
-    username: world.testUsers.valid.username,
-    password: world.testUsers.valid.password
-  });
+When('klient otwiera unikalny link z wiadomości SMS', async () => {
+  await world.app.openLink(world.smsLink);
 });
 
-Then('the dashboard is displayed', async () => {
-  assert.equal(await world.app.currentPage(), 'dashboard');
+Then('użytkownik widzi sekcję z danymi Klienta i Pojazdu na górze widoku', async () => {
+  assert.equal(await world.app.hasClientAndVehicleSection(), true);
 });
 ```
 
 The `world` object is shared state for the scenario. Add project-specific drivers, test users, API clients, or page objects to `features/~support/world.js`.
 
-## 9. Add project support code
+## 7. Add project support code
 
-The clean template includes a minimal Cucumber World in `features/~support/world.js`. For executable tests, extend it with project-specific helpers.
+`features/~support/world.js` includes a minimal Cucumber World. For executable tests, extend it with project-specific helpers.
 
 Common additions include:
 
@@ -267,7 +196,7 @@ Common additions include:
 
 Keep secrets out of Git. Put real URLs, users, and passwords in local environment variables or CI secrets. Keep only safe placeholders in `.env.example`.
 
-## 10. Check undefined steps
+## 8. Check undefined steps
 
 After adding feature files, run a dry run:
 
@@ -277,7 +206,7 @@ npm run bdd:dry-run
 
 If Cucumber reports undefined steps, run `npm run create:module -- <module-folder>` to generate stubs for them, then implement the `TODO` bodies (they return `'pending'` until you do) in `features/~step_definitions/`.
 
-## 11. Run scenarios
+## 9. Run scenarios
 
 Use tags to run smaller groups:
 
@@ -289,7 +218,7 @@ npm run bdd
 
 Full executable runs require project-specific step definitions and support code. Reports are written to `reports/`.
 
-## 12. Commit and open a pull request
+## 10. Commit and open a pull request
 
 Before committing, run:
 
