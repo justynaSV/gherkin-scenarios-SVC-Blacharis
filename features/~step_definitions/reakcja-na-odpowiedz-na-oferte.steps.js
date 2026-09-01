@@ -350,3 +350,18 @@ Then('komórka w kolumnie {string} dla tej naprawy pozostaje pusta', async (valu
   // TODO: implement this step (from feature step: "komórka w kolumnie "Dosprzedaż" dla tej naprawy pozostaje pusta")
   return 'pending';
 });
+
+When('Planer otrzymuje z VS pakiet decyzji klienta z dnia {string}', async (value) => {
+  // TODO: implement this step (from feature step: "Planer otrzymuje z VS pakiet decyzji klienta z dnia "2026-07-10"")
+  return 'pending';
+});
+
+When('pakiet zawiera zaakceptowane pozycje {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pakiet zawiera zaakceptowane pozycje "Wymiana opon na zimowe, Wymiana oleju"")
+  return 'pending';
+});
+
+When('pakiet zawiera odrzucone pozycje {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pakiet zawiera odrzucone pozycje "Wymiana filtra powietrza, Kontrola układu hamulcowego"")
+  return 'pending';
+});

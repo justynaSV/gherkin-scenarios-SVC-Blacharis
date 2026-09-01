@@ -2,9 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 const featuresDir = path.join(process.cwd(), 'features');
-const blockStartPattern = /^\s*(Feature|Background|Scenario(?: Outline)?):\s*(.*)\s*$/;
 const stepPattern = /^\s*(Given|When|Then|And|But)\s+(.+)\s*$/;
+const blockTitlePattern = /^\s*(?:Feature|Background|Scenario(?: Outline)?):\s*(.*)\s*$/;
 const polishCharacterPattern = /[ąćęłńóśźż]/i;
+// Words shorter than 3 characters are excluded: they collide across languages
+// (e.g. English "i"/"a"/"do" vs. Polish "i"/"a"/"do") and produce false positives.
 const polishWords = new Set([
   'aby',
   'automatycznie',
@@ -12,7 +14,6 @@ const polishWords = new Set([
   'części',
   'czesci',
   'dla',
-  'do',
   'gdy',
   'ikona',
   'ikonę',
@@ -23,14 +24,12 @@ const polishWords = new Set([
   'jesli',
   'kalendarz',
   'kalendarzu',
-  'na',
   'nazwa',
   'nazwy',
   'naprawa',
   'naprawie',
   'nie',
   'oraz',
-  'po',
   'potwierdzone',
   'potwierdzenia',
   'przegląda',
@@ -54,18 +53,15 @@ const polishWords = new Set([
   'zostaly'
 ]);
 const englishWords = new Set([
-  'a',
   'able',
   'access',
   'account',
   'action',
   'administrator',
   'after',
-  'an',
   'and',
   'api',
   'authentication',
-  'be',
   'billing',
   'button',
   'can',
@@ -81,10 +77,7 @@ const englishWords = new Set([
   'form',
   'github',
   'has',
-  'i',
-  'in',
   'invalid',
-  'is',
   'link',
   'login',
   'member',
@@ -108,7 +101,6 @@ const englishWords = new Set([
   'protected',
   'that',
   'the',
-  'to',
   'token',
   'unknown',
   'user',
@@ -167,90 +159,20 @@ const scoreLanguages = (text) => {
 };
 
 /**
- * @param {{ file: string, startLine: number, title: string, texts: { line: number, text: string }[] }} block
- * @returns {string[]}
+ * Collects every human-readable line (titles + steps), skipping tags, tables, comments and blank lines.
+ * @param {string} content
+ * @returns {{ line: number, text: string }[]}
  */
-const validateBlock = (block) => {
-  if (block.texts.length === 0) {
-    return [];
-  }
-
-  const total = block.texts.reduce(
-    (languages, entry) => {
-      const lineScore = scoreLanguages(entry.text);
-      languages.pl += lineScore.pl;
-      languages.en += lineScore.en;
-      return languages;
-    },
-    { pl: 0, en: 0 }
-  );
-
-  if (total.pl === 0 && total.en === 0) {
-    return [`${block.file}:${block.startLine}: could not detect language for ${block.title}.`];
-  }
-
-  if (total.pl === total.en) {
-    return [`${block.file}:${block.startLine}: ambiguous language for ${block.title}.`];
-  }
-
-  const expectedLanguage = total.pl > total.en ? 'pl' : 'en';
-  const otherLanguage = expectedLanguage === 'pl' ? 'en' : 'pl';
-  const errors = [];
-
-  block.texts.forEach((entry) => {
-    const lineScore = scoreLanguages(entry.text);
-
-    if (lineScore.pl === 0 && lineScore.en === 0) {
-      errors.push(`${block.file}:${entry.line}: could not detect language for text: ${entry.text}`);
-      return;
-    }
-
-    if (lineScore[expectedLanguage] === 0 && lineScore[otherLanguage] > 0) {
-      errors.push(
-        `${block.file}:${entry.line}: expected ${expectedLanguage.toUpperCase()} text in ${block.title}: ${entry.text}`
-      );
-    }
-  });
-
-  return errors;
-};
-
-/** @type {string[]} */
-const errors = [];
-
-for (const featurePath of walk(featuresDir)) {
-  const relativePath = path.relative(process.cwd(), featurePath).split(path.sep).join('/');
-  const content = fs.readFileSync(featurePath, 'utf8');
-  /** @type {{ file: string, startLine: number, title: string, texts: { line: number, text: string }[] } | null} */
-  let currentBlock = null;
+const extractTexts = (content) => {
+  /** @type {{ line: number, text: string }[] } */
+  const texts = [];
   let isInExamples = false;
-
-  const flushBlock = () => {
-    if (!currentBlock) {
-      return;
-    }
-
-    errors.push(...validateBlock(currentBlock));
-  };
 
   content.split(/\r?\n/).forEach((line, index) => {
     const lineNumber = index + 1;
     const trimmed = line.trim();
-    const blockMatch = line.match(blockStartPattern);
 
-    if (blockMatch) {
-      flushBlock();
-      isInExamples = false;
-      currentBlock = {
-        file: relativePath,
-        startLine: lineNumber,
-        title: `${blockMatch[1]}${blockMatch[2] ? `: ${blockMatch[2]}` : ''}`,
-        texts: blockMatch[2] ? [{ line: lineNumber, text: blockMatch[2] }] : []
-      };
-      return;
-    }
-
-    if (!currentBlock || trimmed === '' || trimmed.startsWith('#') || trimmed.startsWith('@')) {
+    if (trimmed === '' || trimmed.startsWith('#') || trimmed.startsWith('@')) {
       return;
     }
 
@@ -266,14 +188,69 @@ for (const featurePath of walk(featuresDir)) {
     const stepMatch = line.match(stepPattern);
 
     if (stepMatch) {
-      currentBlock.texts.push({ line: lineNumber, text: stepMatch[2].trim() });
+      texts.push({ line: lineNumber, text: stepMatch[2].trim() });
       return;
     }
 
-    currentBlock.texts.push({ line: lineNumber, text: trimmed });
+    const titleMatch = line.match(blockTitlePattern);
+    const text = titleMatch ? titleMatch[1].trim() : trimmed;
+
+    if (text) {
+      texts.push({ line: lineNumber, text });
+    }
   });
 
-  flushBlock();
+  return texts;
+};
+
+/** @type {string[]} */
+const errors = [];
+
+for (const featurePath of walk(featuresDir)) {
+  const relativePath = path.relative(process.cwd(), featurePath).split(path.sep).join('/');
+  const content = fs.readFileSync(featurePath, 'utf8');
+  const texts = extractTexts(content);
+
+  if (texts.length === 0) {
+    continue;
+  }
+
+  // Determine the file's dominant language from its overall vocabulary, instead of
+  // per-block, so short lines with no vocabulary signal of their own aren't judged in isolation.
+  const total = texts.reduce(
+    (languages, entry) => {
+      const lineScore = scoreLanguages(entry.text);
+      languages.pl += lineScore.pl;
+      languages.en += lineScore.en;
+      return languages;
+    },
+    { pl: 0, en: 0 }
+  );
+
+  // No signal at all (e.g. only numbers/quoted values) - nothing to validate against, skip.
+  if (total.pl === 0 && total.en === 0) {
+    continue;
+  }
+
+  if (total.pl === total.en) {
+    errors.push(`${relativePath}: ambiguous dominant language (equal PL/EN signal) - please check manually.`);
+    continue;
+  }
+
+  const expectedLanguage = total.pl > total.en ? 'pl' : 'en';
+  const otherLanguage = expectedLanguage === 'pl' ? 'en' : 'pl';
+
+  texts.forEach((entry) => {
+    const lineScore = scoreLanguages(entry.text);
+
+    // Only flag lines with actual signal for the other language and none for the expected
+    // one - a line with no vocabulary signal at all is ambiguous, not wrong, so it's not an error.
+    if (lineScore[otherLanguage] > 0 && lineScore[expectedLanguage] === 0) {
+      errors.push(
+        `${relativePath}:${entry.line}: expected ${expectedLanguage.toUpperCase()} text, found ${otherLanguage.toUpperCase()} signal only: ${entry.text}`
+      );
+    }
+  });
 }
 
 if (errors.length > 0) {

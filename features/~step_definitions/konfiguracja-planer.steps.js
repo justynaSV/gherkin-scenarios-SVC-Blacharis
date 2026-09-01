@@ -942,3 +942,8 @@ Then('formularz pozycji nie zawiera pól {string}, {string} ani {string}', async
   // TODO: implement this step (from feature step: "formularz pozycji nie zawiera pól "Nazwa", "Stan" ani "Zdjęcia"")
   return 'pending';
 });
+
+Then('odpowiedzi systemowe to {string}, {string} oraz {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "odpowiedzi systemowe to "Potwierdzam wizytę", "Chcę zmienić termin" oraz "Rezygnuję z naprawy"")
+  return 'pending';
+});

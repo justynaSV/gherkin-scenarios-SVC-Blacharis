@@ -230,3 +230,13 @@ Then('użytkownik widzi przycisk {string}', async (value) => {
   // TODO: implement this step (from feature step: "użytkownik widzi przycisk "Zadzwoń do doradcy"")
   return 'pending';
 });
+
+Then('użytkownik widzi pytanie o potwierdzenie wizyty {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik widzi pytanie o potwierdzenie wizyty "Czy potwierdzasz wizytę w dniu 12.08.2026 o godzinie 10:00?"")
+  return 'pending';
+});
+
+Then('użytkownik widzi pytanie o oczekiwaniu na miejscu {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik widzi pytanie o oczekiwaniu na miejscu "Czy będziesz czekał na naprawę na miejscu?"")
+  return 'pending';
+});

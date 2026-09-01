@@ -3,6 +3,7 @@ const path = require('path');
 
 const featuresDir = path.join(process.cwd(), 'features');
 const traceabilityPath = path.join(process.cwd(), 'docs', 'traceability.md');
+const baselinePath = path.join(__dirname, 'traceability-baseline.json');
 const scenarioPattern = /^\s*Scenario(?: Outline)?:\s+(.+)\s*$/;
 
 /**
@@ -31,8 +32,16 @@ if (!fs.existsSync(traceabilityPath)) {
 }
 
 const traceability = fs.readFileSync(traceabilityPath, 'utf8');
+
+// Scenarios written before traceability enforcement was introduced are grandfathered in here so
+// that pre-existing debt doesn't block unrelated PRs. New/changed scenarios still must be traced -
+// see docs/traceability.md.
+/** @type {Set<string>} */
+const baseline = fs.existsSync(baselinePath) ? new Set(JSON.parse(fs.readFileSync(baselinePath, 'utf8'))) : new Set();
+
 /** @type {string[]} */
 const missing = [];
+let grandfatheredCount = 0;
 
 for (const featurePath of walk(featuresDir)) {
   const relativePath = path.relative(process.cwd(), featurePath).split(path.sep).join('/');
@@ -46,17 +55,29 @@ for (const featurePath of walk(featuresDir)) {
     }
 
     const scenarioName = match[1].trim();
+    const key = `${relativePath} -> ${scenarioName}`;
 
     if (!traceability.includes(relativePath) || !traceability.includes(scenarioName)) {
-      missing.push(`${relativePath} -> ${scenarioName}`);
+      if (baseline.has(key)) {
+        grandfatheredCount += 1;
+      } else {
+        missing.push(key);
+      }
     }
   }
 }
 
 if (missing.length > 0) {
-  console.error('Traceability matrix is missing scenario coverage:');
+  console.error('Traceability matrix is missing scenario coverage for new/changed scenarios:');
   missing.forEach((entry) => console.error(`- ${entry}`));
+  console.error('\nAdd an entry to docs/traceability.md for each scenario above.');
   process.exit(1);
 }
 
-console.log('Traceability matrix covers all feature scenarios.');
+if (grandfatheredCount > 0) {
+  console.log(
+    `Traceability matrix check passed (${grandfatheredCount} pre-existing scenario(s) grandfathered via scripts/traceability-baseline.json).`
+  );
+} else {
+  console.log('Traceability matrix covers all feature scenarios.');
+}

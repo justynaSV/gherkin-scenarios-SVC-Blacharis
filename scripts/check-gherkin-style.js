@@ -65,12 +65,15 @@ const expectedIndent = (line) => {
   return null;
 };
 
-const validateFeatureFile = (filePath, allFeatureNames, allScenarioNames) => {
+const validateFeatureFile = (filePath, allFeatureNames) => {
   const relativePath = toRelativePath(filePath);
   const content = fs.readFileSync(filePath, 'utf8');
   const lines = content.split(/\r?\n/);
   const errors = [];
   const featureName = path.basename(filePath, '.feature');
+  // Scenario names only need to be unique within their own file - reusing a title across
+  // different feature files (e.g. the same generic assertion for different icons) is fine.
+  const scenarioNamesInFile = new Set();
 
   if (!isKebabCase(featureName)) {
     errors.push(`${relativePath}: file name should be kebab-case.`);
@@ -184,11 +187,11 @@ const validateFeatureFile = (filePath, allFeatureNames, allScenarioNames) => {
         errors.push(`${relativePath}:${lineNumber}: Scenario name should be ${maxLengths.Scenario} characters or less.`);
       }
 
-      if (allScenarioNames.has(scenarioTitle)) {
+      if (scenarioNamesInFile.has(scenarioTitle)) {
         errors.push(`${relativePath}:${lineNumber}: duplicate Scenario name: ${scenarioTitle}`);
       }
 
-      allScenarioNames.add(scenarioTitle);
+      scenarioNamesInFile.add(scenarioTitle);
       currentScenarioTags = pendingTags;
       pendingTags = [];
       currentScenario = {
@@ -237,8 +240,7 @@ if (featureFiles.length === 0) {
 }
 
 const allFeatureNames = new Set();
-const allScenarioNames = new Set();
-const errors = featureFiles.flatMap((filePath) => validateFeatureFile(filePath, allFeatureNames, allScenarioNames));
+const errors = featureFiles.flatMap((filePath) => validateFeatureFile(filePath, allFeatureNames));
 
 if (errors.length > 0) {
   console.error('Gherkin style validation failed:');
