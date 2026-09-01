@@ -195,3 +195,158 @@ Given('Planer otrzymał z VS pakiet decyzji klienta odrzucający wszystkie pozyc
   // TODO: implement this step (from feature step: "Planer otrzymał z VS pakiet decyzji klienta odrzucający wszystkie pozycje oferty")
   return 'pending';
 });
+
+Given('doradca serwisowy przegląda listę napraw', async () => {
+  // TODO: implement this step (from feature step: "doradca serwisowy przegląda listę napraw")
+  return 'pending';
+});
+
+Then('na liście napraw widoczna jest kolumna {string}', async (value) => {
+  // TODO: implement this step (from feature step: "na liście napraw widoczna jest kolumna "Dosprzedaż"")
+  return 'pending';
+});
+
+Then('kolumna {string} znajduje się bezpośrednio przed kolumną {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "kolumna "Dosprzedaż" znajduje się bezpośrednio przed kolumną "Status Online Booking"")
+  return 'pending';
+});
+
+Given('naprawa na liście napraw ma puste pole {string}', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa na liście napraw ma puste pole "Dosprzedaż"")
+  return 'pending';
+});
+
+Then('komórka w kolumnie {string} dla tej naprawy jest pusta', async (value) => {
+  // TODO: implement this step (from feature step: "komórka w kolumnie "Dosprzedaż" dla tej naprawy jest pusta")
+  return 'pending';
+});
+
+Given('naprawa na liście napraw ma pole {string} z wpisem od klienta', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa na liście napraw ma pole "Dosprzedaż" z wpisem od klienta")
+  return 'pending';
+});
+
+Given('pole {string} tej naprawy ma wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "pole "Oferta obsłużona" tej naprawy ma wartość "<oferta_obsluzona>"")
+  return 'pending';
+});
+
+Then('komórka w kolumnie {string} dla tej naprawy pokazuje wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "komórka w kolumnie "Dosprzedaż" dla tej naprawy pokazuje wartość "<wartosc_komorki>"")
+  return 'pending';
+});
+
+When('doradca serwisowy otwiera filtr w nagłówku kolumny {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy otwiera filtr w nagłówku kolumny "Dosprzedaż"")
+  return 'pending';
+});
+
+Then('filtr zawiera dokładnie trzy opcje {string}, {string} i {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "filtr zawiera dokładnie trzy opcje "Brak", "Zapoznaj się" i "Obsłużone"")
+  return 'pending';
+});
+
+Given('lista napraw zawiera naprawy ze wszystkimi wartościami w kolumnie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "lista napraw zawiera naprawy ze wszystkimi wartościami w kolumnie "Dosprzedaż"")
+  return 'pending';
+});
+
+When('doradca serwisowy wybiera w filtrze kolumny {string} opcję {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy wybiera w filtrze kolumny "Dosprzedaż" opcję "<opcja>"")
+  return 'pending';
+});
+
+Then('lista napraw pokazuje wyłącznie naprawy z wartością {string} w kolumnie {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "lista napraw pokazuje wyłącznie naprawy z wartością "<opcja>" w kolumnie "Dosprzedaż"")
+  return 'pending';
+});
+
+When('doradca serwisowy włącza przełącznik {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy włącza przełącznik "Wymaga działania"")
+  return 'pending';
+});
+
+Given('doradca serwisowy otwiera teczkę naprawy z pustym polem {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy otwiera teczkę naprawy z pustym polem "Dosprzedaż"")
+  return 'pending';
+});
+
+Then('checkbox {string} jest wyszarzony', async (value) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" jest wyszarzony")
+  return 'pending';
+});
+
+Then('checkbox {string} jest nieaktywny', async (value) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" jest nieaktywny")
+  return 'pending';
+});
+
+Given('doradca serwisowy otwiera teczkę naprawy, której pole {string} zawiera wpis odebrany z systemu VS', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy otwiera teczkę naprawy, której pole "Dosprzedaż" zawiera wpis odebrany z systemu VS")
+  return 'pending';
+});
+
+Then('checkbox {string} jest aktywny', async (value) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" jest aktywny")
+  return 'pending';
+});
+
+Then('checkbox {string} jest edytowalny', async (value) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" jest edytowalny")
+  return 'pending';
+});
+
+Given('klient odpowiedział na ofertę dosprzedaży po raz pierwszy dla tej naprawy', async () => {
+  // TODO: implement this step (from feature step: "klient odpowiedział na ofertę dosprzedaży po raz pierwszy dla tej naprawy")
+  return 'pending';
+});
+
+When('system zapisuje odpowiedź w polu {string}', async (value) => {
+  // TODO: implement this step (from feature step: "system zapisuje odpowiedź w polu "Dosprzedaż"")
+  return 'pending';
+});
+
+Then('checkbox {string} ma domyślną wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" ma domyślną wartość "false"")
+  return 'pending';
+});
+
+Given('naprawa na liście napraw ma w kolumnie {string} wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "naprawa na liście napraw ma w kolumnie "Dosprzedaż" wartość "Zapoznaj się"")
+  return 'pending';
+});
+
+When('doradca serwisowy zaznacza checkbox {string} w teczce naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy zaznacza checkbox "Oferta obsłużona" w teczce naprawy")
+  return 'pending';
+});
+
+When('doradca serwisowy zapisuje teczkę naprawy', async () => {
+  // TODO: implement this step (from feature step: "doradca serwisowy zapisuje teczkę naprawy")
+  return 'pending';
+});
+
+Then('po odświeżeniu listy napraw kolumna {string} dla tej naprawy pokazuje wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "po odświeżeniu listy napraw kolumna "Dosprzedaż" dla tej naprawy pokazuje wartość "Obsłużone"")
+  return 'pending';
+});
+
+When('doradca serwisowy odznacza checkbox {string} w teczce naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy odznacza checkbox "Oferta obsłużona" w teczce naprawy")
+  return 'pending';
+});
+
+When('doradca serwisowy otwiera teczkę tej naprawy', async () => {
+  // TODO: implement this step (from feature step: "doradca serwisowy otwiera teczkę tej naprawy")
+  return 'pending';
+});
+
+Then('doradca serwisowy nie może zaznaczyć nieaktywnego checkboxa {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca serwisowy nie może zaznaczyć nieaktywnego checkboxa "Oferta obsłużona"")
+  return 'pending';
+});
+
+Then('komórka w kolumnie {string} dla tej naprawy pozostaje pusta', async (value) => {
+  // TODO: implement this step (from feature step: "komórka w kolumnie "Dosprzedaż" dla tej naprawy pozostaje pusta")
+  return 'pending';
+});

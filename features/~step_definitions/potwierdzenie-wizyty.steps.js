@@ -465,3 +465,198 @@ Then('naprawa zostaje zapisana bez przypisanej oferty dosprzedaży', async () =>
   // TODO: implement this step (from feature step: "naprawa zostaje zapisana bez przypisanej oferty dosprzedaży")
   return 'pending';
 });
+
+Given('uprawniony użytkownik chce wygenerować zestawienie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "uprawniony użytkownik chce wygenerować zestawienie "<zestawienie>"")
+  return 'pending';
+});
+
+When('wywołuje zestawienie bez podania parametru {string}', async (value) => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie bez podania parametru "<brakujacy_parametr>"")
+  return 'pending';
+});
+
+Then('system zwraca błąd walidacji zakresu dat', async () => {
+  // TODO: implement this step (from feature step: "system zwraca błąd walidacji zakresu dat")
+  return 'pending';
+});
+
+Then('system nie zwraca żadnych danych zestawienia', async () => {
+  // TODO: implement this step (from feature step: "system nie zwraca żadnych danych zestawienia")
+  return 'pending';
+});
+
+Given('uprawniony użytkownik definiuje zakres dat, w którym Data_od jest późniejsza niż Data_do', async () => {
+  // TODO: implement this step (from feature step: "uprawniony użytkownik definiuje zakres dat, w którym Data_od jest późniejsza niż Data_do")
+  return 'pending';
+});
+
+When('wywołuje dowolne zestawienie statystyk funkcji Potwierdzenie wizyty', async () => {
+  // TODO: implement this step (from feature step: "wywołuje dowolne zestawienie statystyk funkcji Potwierdzenie wizyty")
+  return 'pending';
+});
+
+Given('uprawniony użytkownik definiuje poprawny zakres dat Data_od i Data_do', async () => {
+  // TODO: implement this step (from feature step: "uprawniony użytkownik definiuje poprawny zakres dat Data_od i Data_do")
+  return 'pending';
+});
+
+Then('system zwraca zestawienie danych spełniające kryteria filtrowania', async () => {
+  // TODO: implement this step (from feature step: "system zwraca zestawienie danych spełniające kryteria filtrowania")
+  return 'pending';
+});
+
+Given('podaje dodatkowy filtr BOK_ID o wartości {string}', async (value) => {
+  // TODO: implement this step (from feature step: "podaje dodatkowy filtr BOK_ID o wartości "BOK-001"")
+  return 'pending';
+});
+
+When('wywołuje zestawienie {string}', async (value) => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie "<zestawienie>"")
+  return 'pending';
+});
+
+Then('system zwraca dane ograniczone wyłącznie do BOK o identyfikatorze {string}', async (value) => {
+  // TODO: implement this step (from feature step: "system zwraca dane ograniczone wyłącznie do BOK o identyfikatorze "BOK-001"")
+  return 'pending';
+});
+
+Given('podaje dodatkowy filtr BOK_ID o wartości nieistniejącego BOK {string}', async (value) => {
+  // TODO: implement this step (from feature step: "podaje dodatkowy filtr BOK_ID o wartości nieistniejącego BOK "BOK-999"")
+  return 'pending';
+});
+
+Then('system zwraca zestawienie z zerowymi wartościami zamiast błędu', async () => {
+  // TODO: implement this step (from feature step: "system zwraca zestawienie z zerowymi wartościami zamiast błędu")
+  return 'pending';
+});
+
+Given('w zadanym zakresie dat zarejestrowano {int} napraw z wysłanym SMS-em potwierdzającym', async (value) => {
+  // TODO: implement this step (from feature step: "w zadanym zakresie dat zarejestrowano 100 napraw z wysłanym SMS-em potwierdzającym")
+  return 'pending';
+});
+
+Given('{int} z tych napraw zawierało ofertę dosprzedaży w SMS-ie', async (value) => {
+  // TODO: implement this step (from feature step: "40 z tych napraw zawierało ofertę dosprzedaży w SMS-ie")
+  return 'pending';
+});
+
+When('wywołuje zestawienie adopcji oferty', async () => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie adopcji oferty")
+  return 'pending';
+});
+
+Then('system zwraca liczbę napraw z ofertą równą {int}', async (value) => {
+  // TODO: implement this step (from feature step: "system zwraca liczbę napraw z ofertą równą 40")
+  return 'pending';
+});
+
+Then('system zwraca odsetek napraw z ofertą równy {int}%', async (value) => {
+  // TODO: implement this step (from feature step: "system zwraca odsetek napraw z ofertą równy 40%")
+  return 'pending';
+});
+
+Given('żadna z tych napraw nie zawierała oferty dosprzedaży w SMS-ie', async () => {
+  // TODO: implement this step (from feature step: "żadna z tych napraw nie zawierała oferty dosprzedaży w SMS-ie")
+  return 'pending';
+});
+
+Given('klienci otworzyli link z SMS-a w różnych odstępach czasu od jego wysłania', async () => {
+  // TODO: implement this step (from feature step: "klienci otworzyli link z SMS-a w różnych odstępach czasu od jego wysłania")
+  return 'pending';
+});
+
+When('wywołuje zestawienie reakcji klientów na SMS', async () => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie reakcji klientów na SMS")
+  return 'pending';
+});
+
+Then('system zwraca medianę czasu reakcji liczoną od wysłania SMS-a do otwarcia linku', async () => {
+  // TODO: implement this step (from feature step: "system zwraca medianę czasu reakcji liczoną od wysłania SMS-a do otwarcia linku")
+  return 'pending';
+});
+
+Given('część klientów nie zarejestrowała żadnego zdarzenia otwarcia linku z SMS-a', async () => {
+  // TODO: implement this step (from feature step: "część klientów nie zarejestrowała żadnego zdarzenia otwarcia linku z SMS-a")
+  return 'pending';
+});
+
+Then('system klasyfikuje tych klientów w grupie brak kliknięcia w link', async () => {
+  // TODO: implement this step (from feature step: "system klasyfikuje tych klientów w grupie brak kliknięcia w link")
+  return 'pending';
+});
+
+Given('część klientów otworzyła formularz potwierdzenia wizyty, ale nie zatwierdziła go', async () => {
+  // TODO: implement this step (from feature step: "część klientów otworzyła formularz potwierdzenia wizyty, ale nie zatwierdziła go")
+  return 'pending';
+});
+
+Then('system klasyfikuje tych klientów w grupie formularz otwarty bez zatwierdzenia', async () => {
+  // TODO: implement this step (from feature step: "system klasyfikuje tych klientów w grupie formularz otwarty bez zatwierdzenia")
+  return 'pending';
+});
+
+Given('klienci w danym BOK udzielili odpowiedzi {string} na pytanie o termin wizyty', async (value) => {
+  // TODO: implement this step (from feature step: "klienci w danym BOK udzielili odpowiedzi "<odpowiedz>" na pytanie o termin wizyty")
+  return 'pending';
+});
+
+When('wywołuje zestawienie odpowiedzi na pytania', async () => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie odpowiedzi na pytania")
+  return 'pending';
+});
+
+Then('system zwraca liczbę i procent odpowiedzi {string} w rozbiciu na BOK', async (value) => {
+  // TODO: implement this step (from feature step: "system zwraca liczbę i procent odpowiedzi "<odpowiedz>" w rozbiciu na BOK")
+  return 'pending';
+});
+
+Given('klienci w danym BOK udzielili odpowiedzi {string} na pytanie o oczekiwanie na miejscu', async (value) => {
+  // TODO: implement this step (from feature step: "klienci w danym BOK udzielili odpowiedzi "<odpowiedz>" na pytanie o oczekiwanie na miejscu")
+  return 'pending';
+});
+
+Given('wysłano SMS z ofertą dosprzedaży dla zadanej liczby napraw w zakresie dat', async () => {
+  // TODO: implement this step (from feature step: "wysłano SMS z ofertą dosprzedaży dla zadanej liczby napraw w zakresie dat")
+  return 'pending';
+});
+
+Given('klient zaakceptował co najmniej jedną pozycję oferty w części z tych napraw', async () => {
+  // TODO: implement this step (from feature step: "klient zaakceptował co najmniej jedną pozycję oferty w części z tych napraw")
+  return 'pending';
+});
+
+When('wywołuje zestawienie skuteczności ofert dosprzedażowych', async () => {
+  // TODO: implement this step (from feature step: "wywołuje zestawienie skuteczności ofert dosprzedażowych")
+  return 'pending';
+});
+
+Then('system zwraca odsetek napraw zakończonych akceptacją co najmniej jednej pozycji', async () => {
+  // TODO: implement this step (from feature step: "system zwraca odsetek napraw zakończonych akceptacją co najmniej jednej pozycji")
+  return 'pending';
+});
+
+Given('pozycje z różnych szablonów ofert otrzymały różną liczbę odpowiedzi i akceptacji', async () => {
+  // TODO: implement this step (from feature step: "pozycje z różnych szablonów ofert otrzymały różną liczbę odpowiedzi i akceptacji")
+  return 'pending';
+});
+
+Then('system zwraca ranking pozycji z liczbą odpowiedzi, akceptacji i współczynnikiem akceptacji', async () => {
+  // TODO: implement this step (from feature step: "system zwraca ranking pozycji z liczbą odpowiedzi, akceptacji i współczynnikiem akceptacji")
+  return 'pending';
+});
+
+Given('szablony ofert różnią się odsetkiem napraw zakończonych akceptacją co najmniej jednej pozycji', async () => {
+  // TODO: implement this step (from feature step: "szablony ofert różnią się odsetkiem napraw zakończonych akceptacją co najmniej jednej pozycji")
+  return 'pending';
+});
+
+Then('system zwraca ranking szablonów uporządkowany malejąco według tego odsetka', async () => {
+  // TODO: implement this step (from feature step: "system zwraca ranking szablonów uporządkowany malejąco według tego odsetka")
+  return 'pending';
+});
+
+Given('w zadanym zakresie dat nie zarejestrowano żadnych zdarzeń funkcji Potwierdzenie wizyty', async () => {
+  // TODO: implement this step (from feature step: "w zadanym zakresie dat nie zarejestrowano żadnych zdarzeń funkcji Potwierdzenie wizyty")
+  return 'pending';
+});
