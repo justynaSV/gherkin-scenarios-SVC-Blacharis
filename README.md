@@ -14,7 +14,7 @@ For day-to-day work, the short version is:
 2. Answer follow-up questions and review the generated scenarios.
 3. Save the `.feature` file under the right module folder in `features/`.
 4. Run `npm run create:module -- <module-folder>` if it's a new module, to scaffold/update step definitions.
-5. Update `docs/traceability.md`.
+5. Run `npm run trace:generate` to regenerate `docs/traceability.md` (the `/gherkin-scenarios` prompt does this for you).
 6. Add or update step definitions in `features/~step_definitions/`.
 7. Run `npm run validate` (and Cucumber checks, once step definitions exist).
 8. Commit and open a pull request.
@@ -184,4 +184,4 @@ Executable runs require project-specific step definitions and application adapte
 
 ## Traceability
 
-Use `docs/traceability.md` to link story IDs, acceptance criteria, feature files, scenario names, and tags. If a feature is saved in a subfolder, use the full workspace-relative path.
+`docs/traceability.md` links story IDs, acceptance criteria, feature files, scenario names, and tags. It is **generated** by `npm run trace:generate` from the `# Zadanie`/`# AC` comments and tags in the `.feature` files — do not edit the table by hand. `npm run validate` fails if the matrix is stale, so regenerate it after any feature change (the `/gherkin-scenarios` prompt does this automatically).

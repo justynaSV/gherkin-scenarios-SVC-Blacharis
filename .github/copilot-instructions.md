@@ -14,6 +14,9 @@
 - Feature files are grouped into module folders under `features/` (e.g. `features/calendar icons/`). After saving a
   new or updated `.feature` file, run `npm run create:module -- <module-folder>` to regenerate matching step stubs
   at `features/~step_definitions/<module-folder>.steps.js` (safe to re-run; only appends missing steps).
+- After saving a new or updated `.feature` file, also run `npm run trace:generate` to regenerate `docs/traceability.md`
+  from the `# Zadanie`/`# AC` comments and tags. `docs/traceability.md` is generated — never edit it by hand, and
+  `npm run validate` fails if it is stale.
 - File-save confirmations must use the `vscode_askQuestions` tool with Yes/No options, not a plain chat question.
 - If given a Jira URL or bare issue key (e.g. `PROJ-123`) instead of pasted user-story text, use the Atlassian MCP
   tools to fetch the issue content first; only ask the user to paste text if MCP is unavailable or fails.
