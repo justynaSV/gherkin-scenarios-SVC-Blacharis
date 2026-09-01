@@ -20,7 +20,10 @@
 - File-save confirmations must use the `vscode_askQuestions` tool with Yes/No options, not a plain chat question.
 - If given a Jira URL or bare issue key (e.g. `PROJ-123`) instead of pasted user-story text, use the Atlassian MCP
   tools to fetch the issue content first; only ask the user to paste text if MCP is unavailable or fails.
-- npm scripts: `bdd` / `bdd:dry-run` / `bdd:regression` / `bdd:smoke` run Cucumber profiles; `lint` / `validate` run
-  gherkin-lint plus `scripts/check-*.js` plus a dry-run.
+- npm scripts: `bdd` / `bdd:dry-run` / `bdd:regression` / `bdd:smoke` run Cucumber profiles. `lint` (aliased by
+  `validate`) runs `scripts/lint.js`, which runs the Gherkin-style, feature-language, duplicate-step and
+  traceability-freshness checks in one process; each is also runnable on its own via `lint:gherkin` / `lint:language`
+  / `lint:steps` / `lint:traceability`. `validate` does not run Cucumber — use `npm run bdd:dry-run` separately to
+  catch undefined steps.
 - Do not recreate a local web UI (`tools/ui`) — it was added then intentionally removed as not useful; don't add it
   back unless explicitly asked again.

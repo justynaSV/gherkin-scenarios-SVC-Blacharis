@@ -1,30 +1,14 @@
 const fs = require('fs');
 const path = require('path');
+const { walkFeatureFiles, toRelativePath } = require('./lib/feature-files');
 
-const featuresDir = path.join(process.cwd(), 'features');
 const traceabilityPath = path.join(process.cwd(), 'docs', 'traceability.md');
-const isCheckMode = process.argv.includes('--check');
 
 const STORY_ID_PATTERN = /\b([A-Z][A-Z0-9]+-\d+)\b/;
 const AC_COMMENT_PATTERN = /^\s*#\s*(?:AC\s*(\d+)?|Acceptance criterion)\s*:?\s*(.*)$/i;
 const TAG_LINE_PATTERN = /^\s*(@\S+(?:\s+@\S+)*)\s*$/;
 const SCENARIO_PATTERN = /^\s*(Scenario(?: Outline)?):\s+(.+?)\s*$/;
 const FEATURE_LINE_PATTERN = /^\s*Feature:/;
-
-/**
- * Recursively find every .feature file under a directory.
- * @param {string} directory
- * @returns {string[]}
- */
-const walk = (directory) => {
-  if (!fs.existsSync(directory)) return [];
-
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const fullPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) return walk(fullPath);
-    return entry.isFile() && entry.name.endsWith('.feature') ? [fullPath] : [];
-  });
-};
 
 /**
  * Escape a value for safe use inside a Markdown table cell.
@@ -39,7 +23,7 @@ const escapeCell = (value) => value.replace(/\|/g, '\\|').trim();
  * @returns {{ storyId: string, ac: string, featurePath: string, scenario: string, tags: string }[]}
  */
 const parseFeatureFile = (filePath) => {
-  const relativePath = path.relative(process.cwd(), filePath).split(path.sep).join('/');
+  const relativePath = toRelativePath(filePath);
   const lines = fs.readFileSync(filePath, 'utf8').split(/\r?\n/);
 
   // Story ID: first ticket-shaped reference anywhere before the Feature: line
@@ -104,11 +88,16 @@ const parseFeatureFile = (filePath) => {
   return rows;
 };
 
-const allRows = walk(featuresDir)
-  .sort()
-  .flatMap(parseFeatureFile);
+/**
+ * Build the full `docs/traceability.md` content from the current `.feature` files.
+ * @returns {{ content: string, count: number }}
+ */
+const buildTraceabilityContent = () => {
+  const allRows = walkFeatureFiles()
+    .sort()
+    .flatMap(parseFeatureFile);
 
-const header = `# Traceability Matrix
+  const header = `# Traceability Matrix
 
 This file is generated from the \`.feature\` files by \`npm run trace:generate\`.
 Do not edit the table by hand — edit the \`# Zadanie\`/\`# AC\` comments and tags in the
@@ -118,25 +107,51 @@ feature files instead, then regenerate. \`npm run validate\` fails if this file 
 | --- | --- | --- | --- | --- |
 `;
 
-const tableRows = allRows
-  .map((row) => `| ${escapeCell(row.storyId)} | ${escapeCell(row.ac)} | \`${escapeCell(row.featurePath)}\` | \`${escapeCell(row.scenario)}\` | \`${escapeCell(row.tags)}\` |`)
-  .join('\n');
+  const tableRows = allRows
+    .map((row) => `| ${escapeCell(row.storyId)} | ${escapeCell(row.ac)} | \`${escapeCell(row.featurePath)}\` | \`${escapeCell(row.scenario)}\` | \`${escapeCell(row.tags)}\` |`)
+    .join('\n');
 
-const generatedContent = `${header}${tableRows}\n`;
+  return { content: `${header}${tableRows}\n`, count: allRows.length };
+};
 
-if (isCheckMode) {
-  const existing = fs.existsSync(traceabilityPath) ? fs.readFileSync(traceabilityPath, 'utf8') : '';
+/**
+ * In `check` mode, report whether `docs/traceability.md` is up to date without
+ * touching it. Otherwise (re)write the file. Returns a result for `lib/report`.
+ * @param {{ check?: boolean }} [options]
+ */
+const generateTraceability = ({ check = false } = {}) => {
+  const { content, count } = buildTraceabilityContent();
 
-  if (existing !== generatedContent) {
-    console.error('docs/traceability.md is out of date.');
-    console.error('Run: npm run trace:generate');
-    process.exit(1);
+  if (check) {
+    const existing = fs.existsSync(traceabilityPath) ? fs.readFileSync(traceabilityPath, 'utf8') : '';
+
+    if (existing !== content) {
+      return {
+        label: 'Traceability matrix',
+        failHeader: null,
+        errorLines: ['docs/traceability.md is out of date.', 'Run: npm run trace:generate']
+      };
+    }
+
+    return {
+      label: 'Traceability matrix',
+      passMessage: `Traceability matrix is up to date (${count} scenario(s)).`
+    };
   }
 
-  console.log(`Traceability matrix is up to date (${allRows.length} scenario(s)).`);
-  process.exit(0);
-}
+  fs.mkdirSync(path.dirname(traceabilityPath), { recursive: true });
+  fs.writeFileSync(traceabilityPath, content);
 
-fs.mkdirSync(path.dirname(traceabilityPath), { recursive: true });
-fs.writeFileSync(traceabilityPath, generatedContent);
-console.log(`docs/traceability.md regenerated (${allRows.length} scenario(s)).`);
+  return {
+    label: 'Traceability matrix',
+    passMessage: `docs/traceability.md regenerated (${count} scenario(s)).`
+  };
+};
+
+module.exports = { generateTraceability, buildTraceabilityContent };
+
+if (require.main === module) {
+  const { reportResult } = require('./lib/report');
+  const result = generateTraceability({ check: process.argv.includes('--check') });
+  process.exit(reportResult(result) ? 0 : 1);
+}
