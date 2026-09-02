@@ -96,6 +96,18 @@ Feature: Kolumna "Dosprzedaż" i checkbox "Oferta obsłużona" na liście napraw
     And doradca serwisowy zapisuje teczkę naprawy
     Then po odświeżeniu listy napraw kolumna "Dosprzedaż" dla tej naprawy pokazuje wartość "Zapoznaj się"
 
+  # AC6: podgląd statusu pola "Oferta obsłużona" w pełnej teczce naprawy
+  @regression @ui
+  Scenario Outline: Wyświetlenie statusu pola "Oferta obsłużona" w podglądzie pełnej teczki naprawy
+    Given checkbox "Oferta obsłużona" w teczce naprawy ma wartość "<oferta_obsluzona>"
+    When doradca serwisowy wyświetla podgląd pełnej teczki naprawy
+    Then podgląd teczki pokazuje status pola "Oferta obsłużona" jako "<status>"
+
+    Examples:
+      | oferta_obsluzona | status |
+      | true             | TAK    |
+      | false            | NIE    |
+
   # Przypadek negatywny: brak możliwości zmiany statusu bez wpisu od klienta
   @regression @ui
   Scenario: Brak możliwości zmiany statusu, gdy pole "Dosprzedaż" jest puste

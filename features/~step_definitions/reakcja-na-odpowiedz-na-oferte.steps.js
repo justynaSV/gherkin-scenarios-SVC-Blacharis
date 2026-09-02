@@ -490,3 +490,18 @@ Then('autorem wpisu jest {string}', async (value) => {
   // TODO: implement this step (from feature step: "autorem wpisu jest "Video Service"")
   return 'pending';
 });
+
+Given('checkbox {string} w teczce naprawy ma wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "checkbox "Oferta obsłużona" w teczce naprawy ma wartość "<oferta_obsluzona>"")
+  return 'pending';
+});
+
+When('doradca serwisowy wyświetla podgląd pełnej teczki naprawy', async () => {
+  // TODO: implement this step (from feature step: "doradca serwisowy wyświetla podgląd pełnej teczki naprawy")
+  return 'pending';
+});
+
+Then('podgląd teczki pokazuje status pola {string} jako {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "podgląd teczki pokazuje status pola "Oferta obsłużona" jako "<status>"")
+  return 'pending';
+});
