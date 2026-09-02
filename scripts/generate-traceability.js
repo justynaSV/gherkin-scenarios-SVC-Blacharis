@@ -5,7 +5,13 @@ const { walkFeatureFiles, toRelativePath } = require('./lib/feature-files');
 const traceabilityPath = path.join(process.cwd(), 'docs', 'traceability.md');
 
 const STORY_ID_PATTERN = /\b([A-Z][A-Z0-9]+-\d+)\b/;
-const AC_COMMENT_PATTERN = /^\s*#\s*AC\s*(\d+)?\s*:?\s*(.*)$/i;
+// Traceability comments: "# AC: ...", "# AC1: ...", "# AC2, AC5: ...",
+// "# AC6/AC7: ...", "# AC1 (dawne T10 - SVCLOUD-5613): ...". Group 1 is the
+// AC reference (or comma/slash-separated list of them); group 2 is the rest of
+// the line. The \b after the reference list is what stops ordinary comments
+// ("# Action: ...", "# Account ...", "# Acceptance criterion: ...") from being
+// mistaken for acceptance criteria — without it, the leading "Ac" matched.
+const AC_COMMENT_PATTERN = /^\s*#\s*(AC\s*\d*(?:\s*[,/]\s*AC\s*\d*)*)\b\s*(.*)$/i;
 const TAG_LINE_PATTERN = /^\s*(@\S+(?:\s+@\S+)*)\s*$/;
 const SCENARIO_PATTERN = /^\s*(Scenario(?: Outline)?):\s+(.+?)\s*$/;
 const FEATURE_LINE_PATTERN = /^\s*Feature:/;
@@ -49,8 +55,12 @@ const parseFeatureFile = (filePath) => {
   for (const line of lines) {
     const acMatch = line.match(AC_COMMENT_PATTERN);
     if (acMatch) {
-      const [, acNumber, acText] = acMatch;
-      pendingAcComments.push(acNumber ? `AC${acNumber}${acText ? `: ${acText}` : ''}` : acText || 'AC');
+      const acRefs = acMatch[1].replace(/\s+/g, '').replace(/,/g, ', ');
+      const acText = acMatch[2].replace(/^:\s*/, '').trim();
+      const bareAc = /^AC$/i.test(acRefs);
+      // A bare "# AC:" carries no number, so the description stands on its own;
+      // anything numbered keeps its "AC1: " / "AC2, AC5: " prefix.
+      pendingAcComments.push(bareAc ? acText || 'AC' : acText ? `${acRefs}: ${acText}` : acRefs);
       continue;
     }
 
@@ -125,7 +135,12 @@ const generateTraceability = ({ check = false } = {}) => {
   if (check) {
     const existing = fs.existsSync(traceabilityPath) ? fs.readFileSync(traceabilityPath, 'utf8') : '';
 
-    if (existing !== content) {
+    // Compare line-ending-agnostically: the file is generated with \n, but a
+    // Windows checkout with core.autocrlf=true stores it as \r\n, which would
+    // otherwise make this check fail on a freshly generated file.
+    const normalise = (/** @type {string} */ text) => text.replace(/\r\n/g, '\n');
+
+    if (normalise(existing) !== normalise(content)) {
       return {
         label: 'Traceability matrix',
         failHeader: null,
