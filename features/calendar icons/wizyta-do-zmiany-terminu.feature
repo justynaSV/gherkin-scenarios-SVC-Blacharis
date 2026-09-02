@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-4978 — SX — Zdarzenie - Wizyta do zmiany terminu
 @wizyta-do-zmiany-terminu @ui @calendar
 Feature: Ikona "Wizyta do zmiany terminu" na zadaniu kalendarza BOK i Warsztatu
   Jako doradca serwisowy lub mistrz warsztatu

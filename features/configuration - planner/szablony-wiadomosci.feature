@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5254 — S1 — Konfiguracja szablonu wiadomości
 @szablony-wiadomosci-planera
 Feature: Konfiguracja szablonów wiadomości Planera
   Jako Administrator Systemu chcę konfigurować dedykowane szablony wiadomości Planera,

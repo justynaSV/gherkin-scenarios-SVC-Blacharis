@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5269 — SX — Zdarzenie - Wizyta niepotwierdzona
 @wizyta-niepotwierdzona @ui @calendar @regression @pl
 Feature: Ikona "Wizyta niepotwierdzona" na zadaniu kalendarza BOK i Warsztatu
   Jako doradca serwisowy lub mistrz warsztatu

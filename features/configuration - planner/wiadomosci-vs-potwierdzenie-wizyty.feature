@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5257 — S3 — Konfiguracja wiadomości i zdarzenia w Planerze
 @wiadomosci-vs-potwierdzenie-wizyty
 Feature: Aktywacja wiadomości VS dla zdarzenia Potwierdzenie wizyty w Planerze Serwisu
   Jako Administrator Systemu chcę powiązać szablon Planera ze zdarzeniem "Potwierdzenie wizyty"

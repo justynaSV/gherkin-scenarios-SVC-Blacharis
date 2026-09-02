@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5035 — S13 — Zdarzenie - naprawa opóźniona
 @naprawa-opozniona @ui @calendar @regression @pl
 Feature: Ikona naprawy opóźnionej w kalendarzu
   Jako mistrz warsztatu lub doradca serwisowy

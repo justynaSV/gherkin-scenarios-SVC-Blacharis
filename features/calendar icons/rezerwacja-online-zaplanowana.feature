@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5081 — S15 — Zdarzenie - Rezerwacja online "Zaplanowana"
 @rezerwacja-online-zaplanowana @ui @regression @pl
 Feature: Ikona zaplanowanej rezerwacji online w kalendarzu
   Jako doradca serwisowy lub mistrz warsztatu

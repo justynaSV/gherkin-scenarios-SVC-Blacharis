@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5514 — S5 — Wygląd wiadomości SMS
 @widok-wiadomosci-sms @ui @regression @pl
 Feature: Widok wiadomości SMS z potwierdzeniem wizyty i ofertą dosprzedaży
   Jako Klient serwisu chcę otworzyć link z wiadomości SMS, aby potwierdzić wizytę

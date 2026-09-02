@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5248 — SX — Zdarzenie - Wizyta odwołana
 @wizyta-odwolana @ui @calendar @regression @pl
 Feature: Ikona "Wizyta odwołana" na zadaniu kalendarza BOK i Warsztatu
   Jako doradca serwisowy lub mistrz warsztatu

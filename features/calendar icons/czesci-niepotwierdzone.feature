@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-4682 — S18 — Zdarzenie - części niepotwierdzone
 @czesci-niepotwierdzone @ui @regression @pl
 Feature: Ikona części niepotwierdzonych na zadaniu w kalendarzu
   Jako doradca serwisowy lub mistrz warsztatu

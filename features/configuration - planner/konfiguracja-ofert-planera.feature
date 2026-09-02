@@ -1,3 +1,4 @@
+# Zadanie: SVCLOUD-5256 — S2 — Konfiguracja ofert szablonowych
 @konfiguracja-ofert-planera
 Feature: Konfiguracja Szablonów Ofert Planera
   Jako Administrator Systemu chcę zarządzać Szablonami Ofert Planera w dedykowanej, uproszczonej sekcji menu,
