@@ -1,132 +1,59 @@
 const fs = require('fs');
-const path = require('path');
+const { walkFeatureFiles, toRelativePath } = require('./lib/feature-files');
 
-const featuresDir = path.join(process.cwd(), 'features');
 const stepPattern = /^\s*(Given|When|Then|And|But)\s+(.+)\s*$/;
 const blockTitlePattern = /^\s*(?:Feature|Background|Scenario(?: Outline)?):\s*(.*)\s*$/;
 const polishCharacterPattern = /[ąćęłńóśźż]/i;
-// Words shorter than 3 characters are excluded: they collide across languages
-// (e.g. English "i"/"a"/"do" vs. Polish "i"/"a"/"do") and produce false positives.
+
+// Polish diacritics are the primary PL signal (worth +2 per word below). The word
+// lists are only a tie-breaker (+1) for lines and files that happen to have no
+// diacritics at all. They are deliberately common *function words*, not domain
+// vocabulary — feature files change constantly, function words do not, so these
+// lists never need maintenance. Words shorter than 3 characters are left out on
+// purpose: they collide across languages (PL "do"/"na" vs. EN "do"/"an").
 const polishWords = new Set([
   'aby',
-  'automatycznie',
+  'albo',
+  'bez',
   'brak',
-  'części',
-  'czesci',
+  'czy',
   'dla',
   'gdy',
-  'ikona',
-  'ikonę',
-  'ikone',
-  'jest',
+  'jak',
   'jako',
+  'jest',
   'jeśli',
   'jesli',
-  'kalendarz',
-  'kalendarzu',
-  'nazwa',
-  'nazwy',
-  'naprawa',
-  'naprawie',
+  'lub',
   'nie',
   'oraz',
-  'potwierdzone',
-  'potwierdzenia',
-  'przegląda',
-  'przeglada',
-  'system',
-  'ukrycie',
-  'użytkownik',
-  'uzytkownik',
-  'wartość',
-  'wartosc',
-  'weryfikuje',
-  'widoczna',
-  'widok',
-  'wyświetlenie',
-  'wyswietlenie',
-  'zadanie',
-  'zadaniu',
-  'zaktualizowany',
-  'zostaje',
-  'zostały',
-  'zostaly'
+  'przy',
+  'tak',
+  'wtedy',
+  'żeby',
+  'zeby'
 ]);
 const englishWords = new Set([
-  'able',
-  'access',
-  'account',
-  'action',
-  'administrator',
-  'after',
   'and',
-  'api',
-  'authentication',
-  'billing',
-  'button',
-  'can',
-  'cannot',
-  'completed',
-  'credentials',
-  'direct',
-  'email',
-  'empty',
-  'enter',
-  'error',
-  'fields',
-  'form',
-  'github',
-  'has',
-  'invalid',
-  'link',
-  'login',
-  'member',
-  'not',
-  'organization',
-  'page',
-  'password',
-  'permissions',
-  'registered',
-  'request',
-  'reset',
-  'role',
-  'see',
-  'settings',
-  'should',
-  'sign',
-  'successful',
-  'sensitive',
-  'actions',
   'are',
-  'protected',
+  'can',
+  'does',
+  'for',
+  'from',
+  'has',
+  'have',
+  'into',
+  'must',
+  'not',
+  'should',
   'that',
   'the',
-  'token',
-  'unknown',
-  'user',
-  'valid',
+  'then',
+  'this',
+  'when',
+  'will',
   'with'
 ]);
-
-/**
- * @param {string} directory
- * @returns {string[]}
- */
-const walk = (directory) => {
-  if (!fs.existsSync(directory)) {
-    return [];
-  }
-
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const fullPath = path.join(directory, entry.name);
-
-    if (entry.isDirectory()) {
-      return walk(fullPath);
-    }
-
-    return entry.isFile() && entry.name.endsWith('.feature') ? [fullPath] : [];
-  });
-};
 
 /**
  * @param {string} text
@@ -203,60 +130,68 @@ const extractTexts = (content) => {
   return texts;
 };
 
-/** @type {string[]} */
-const errors = [];
+const runCheck = () => {
+  /** @type {string[]} */
+  const errors = [];
 
-for (const featurePath of walk(featuresDir)) {
-  const relativePath = path.relative(process.cwd(), featurePath).split(path.sep).join('/');
-  const content = fs.readFileSync(featurePath, 'utf8');
-  const texts = extractTexts(content);
+  for (const featurePath of walkFeatureFiles()) {
+    const relativePath = toRelativePath(featurePath);
+    const content = fs.readFileSync(featurePath, 'utf8');
+    const texts = extractTexts(content);
 
-  if (texts.length === 0) {
-    continue;
-  }
-
-  // Determine the file's dominant language from its overall vocabulary, instead of
-  // per-block, so short lines with no vocabulary signal of their own aren't judged in isolation.
-  const total = texts.reduce(
-    (languages, entry) => {
-      const lineScore = scoreLanguages(entry.text);
-      languages.pl += lineScore.pl;
-      languages.en += lineScore.en;
-      return languages;
-    },
-    { pl: 0, en: 0 }
-  );
-
-  // No signal at all (e.g. only numbers/quoted values) - nothing to validate against, skip.
-  if (total.pl === 0 && total.en === 0) {
-    continue;
-  }
-
-  if (total.pl === total.en) {
-    errors.push(`${relativePath}: ambiguous dominant language (equal PL/EN signal) - please check manually.`);
-    continue;
-  }
-
-  const expectedLanguage = total.pl > total.en ? 'pl' : 'en';
-  const otherLanguage = expectedLanguage === 'pl' ? 'en' : 'pl';
-
-  texts.forEach((entry) => {
-    const lineScore = scoreLanguages(entry.text);
-
-    // Only flag lines with actual signal for the other language and none for the expected
-    // one - a line with no vocabulary signal at all is ambiguous, not wrong, so it's not an error.
-    if (lineScore[otherLanguage] > 0 && lineScore[expectedLanguage] === 0) {
-      errors.push(
-        `${relativePath}:${entry.line}: expected ${expectedLanguage.toUpperCase()} text, found ${otherLanguage.toUpperCase()} signal only: ${entry.text}`
-      );
+    if (texts.length === 0) {
+      continue;
     }
-  });
-}
 
-if (errors.length > 0) {
-  console.error('Feature language validation failed:');
-  errors.forEach((error) => console.error(`- ${error}`));
-  process.exit(1);
-}
+    // Determine the file's dominant language from its overall vocabulary, instead of
+    // per-block, so short lines with no vocabulary signal of their own aren't judged in isolation.
+    const total = texts.reduce(
+      (languages, entry) => {
+        const lineScore = scoreLanguages(entry.text);
+        languages.pl += lineScore.pl;
+        languages.en += lineScore.en;
+        return languages;
+      },
+      { pl: 0, en: 0 }
+    );
 
-console.log('Feature language validation passed.');
+    // No signal at all (e.g. only numbers/quoted values) - nothing to validate against, skip.
+    if (total.pl === 0 && total.en === 0) {
+      continue;
+    }
+
+    if (total.pl === total.en) {
+      errors.push(`${relativePath}: ambiguous dominant language (equal PL/EN signal) - please check manually.`);
+      continue;
+    }
+
+    const expectedLanguage = total.pl > total.en ? 'pl' : 'en';
+    const otherLanguage = expectedLanguage === 'pl' ? 'en' : 'pl';
+
+    texts.forEach((entry) => {
+      const lineScore = scoreLanguages(entry.text);
+
+      // Only flag lines with actual signal for the other language and none for the expected
+      // one - a line with no vocabulary signal at all is ambiguous, not wrong, so it's not an error.
+      if (lineScore[otherLanguage] > 0 && lineScore[expectedLanguage] === 0) {
+        errors.push(
+          `${relativePath}:${entry.line}: expected ${expectedLanguage.toUpperCase()} text, found ${otherLanguage.toUpperCase()} signal only: ${entry.text}`
+        );
+      }
+    });
+  }
+
+  return {
+    label: 'Feature language validation',
+    failHeader: 'Feature language validation failed:',
+    errorLines: errors.map((error) => `- ${error}`),
+    passMessage: 'Feature language validation passed.'
+  };
+};
+
+module.exports = { runCheck };
+
+if (require.main === module) {
+  const { reportResult } = require('./lib/report');
+  process.exit(reportResult(runCheck()) ? 0 : 1);
+}

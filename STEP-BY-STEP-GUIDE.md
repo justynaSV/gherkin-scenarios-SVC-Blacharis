@@ -97,9 +97,17 @@ features/login/password-reset.feature
 features/orders/order-cancellation.feature
 ```
 
-## 6. Check the traceability table
+## 6. Regenerate the traceability table
 
-Open `docs/traceability.md` and confirm your new scenario has a row, for example:
+`docs/traceability.md` is generated from the `.feature` files — never edit it by hand. The `/gherkin-scenarios`
+prompt regenerates it for you after saving a feature; if you edited a feature by hand, run it yourself:
+
+```sh
+npm run trace:generate
+```
+
+Each scenario becomes one row, built from the `# Zadanie: <STORY-ID>` and `# AC:` comments and the tags in the
+feature file:
 
 ```md
 | Story ID | Acceptance criterion | Feature file | Scenario name | Tags |
@@ -107,7 +115,8 @@ Open `docs/traceability.md` and confirm your new scenario has a row, for example
 | LOGIN-001 | Registered user can sign in | `features/login/login.feature` | Successful login with valid credentials | `@smoke @regression @ui` |
 ```
 
-If a row is missing, add one manually.
+If the Story ID column shows `—`, add a `# Zadanie: <STORY-ID>` comment above the `Feature:` line and regenerate.
+`npm run validate` fails if the matrix is out of date.
 
 ## 7. Validate your changes
 

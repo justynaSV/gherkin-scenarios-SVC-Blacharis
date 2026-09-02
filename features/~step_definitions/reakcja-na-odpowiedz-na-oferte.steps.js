@@ -365,3 +365,128 @@ When('pakiet zawiera odrzucone pozycje {string}', async (value) => {
   // TODO: implement this step (from feature step: "pakiet zawiera odrzucone pozycje "Wymiana filtra powietrza, Kontrola układu hamulcowego"")
   return 'pending';
 });
+
+Given('w teczce naprawy pole {string} ma wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "w teczce naprawy pole "Oferta dosprzedaży" ma wartość "— bez oferty —"")
+  return 'pending';
+});
+
+When('doradca wybiera szablon oferty {string} w polu {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca wybiera szablon oferty "Przegląd okresowy" w polu "Oferta dosprzedaży"")
+  return 'pending';
+});
+
+Then('w Historii zmian pojawia się wpis dla pola {string}', async (value) => {
+  // TODO: implement this step (from feature step: "w Historii zmian pojawia się wpis dla pola "Oferta dosprzedaży"")
+  return 'pending';
+});
+
+Then('wpis zawiera wartość poprzednią {string} i wartość nową {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "wpis zawiera wartość poprzednią "— bez oferty —" i wartość nową "Przegląd okresowy"")
+  return 'pending';
+});
+
+Then('wpis zawiera datę i godzinę zmiany oraz imię i nazwisko doradcy', async () => {
+  // TODO: implement this step (from feature step: "wpis zawiera datę i godzinę zmiany oraz imię i nazwisko doradcy")
+  return 'pending';
+});
+
+When('doradca zmienia wartość pola {string} na {string} w {string}', async (value1, value2, value3) => {
+  // TODO: implement this step (from feature step: "doradca zmienia wartość pola "Oferta dosprzedaży" na "<wartosc_nowa>" w "<miejsce_zmiany>"")
+  return 'pending';
+});
+
+Then('w Historii zmian pojawia się wpis z wartością poprzednią {string} i wartością nową {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "w Historii zmian pojawia się wpis z wartością poprzednią "<wartosc_poprzednia>" i wartością nową "<wartosc_nowa>"")
+  return 'pending';
+});
+
+Given('pole {string} zmienia stan blokady w wyniku {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "pole "Oferta dosprzedaży" zmienia stan blokady w wyniku "<zdarzenie_systemowe>"")
+  return 'pending';
+});
+
+When('system aktualizuje stan blokady pola', async () => {
+  // TODO: implement this step (from feature step: "system aktualizuje stan blokady pola")
+  return 'pending';
+});
+
+Then('w Historii zmian nie pojawia się nowy wpis dotyczący stanu blokady pola', async () => {
+  // TODO: implement this step (from feature step: "w Historii zmian nie pojawia się nowy wpis dotyczący stanu blokady pola")
+  return 'pending';
+});
+
+Given('doradca wysyła do klienta wiadomość typu {string} zawierającą ofertę dosprzedaży {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca wysyła do klienta wiadomość typu "Wiadomość VS" zawierającą ofertę dosprzedaży "Przegląd okresowy"")
+  return 'pending';
+});
+
+When('system wysyła wiadomość', async () => {
+  // TODO: implement this step (from feature step: "system wysyła wiadomość")
+  return 'pending';
+});
+
+Then('w Historii zmian pojawia się wpis z nazwą wysłanego szablonu oferty {string}', async (value) => {
+  // TODO: implement this step (from feature step: "w Historii zmian pojawia się wpis z nazwą wysłanego szablonu oferty "Przegląd okresowy"")
+  return 'pending';
+});
+
+Then('wpis zawiera datę i godzinę wysyłki oraz autora {string}', async (value) => {
+  // TODO: implement this step (from feature step: "wpis zawiera datę i godzinę wysyłki oraz autora "Video Service"")
+  return 'pending';
+});
+
+Given('doradca wysyła do klienta wiadomość typu {string} bez oferty dosprzedaży', async (value) => {
+  // TODO: implement this step (from feature step: "doradca wysyła do klienta wiadomość typu "Wiadomość VS" bez oferty dosprzedaży")
+  return 'pending';
+});
+
+Then('w Historii zmian pojawia się wpis z informacją o braku oferty w wysłanej wiadomości', async () => {
+  // TODO: implement this step (from feature step: "w Historii zmian pojawia się wpis z informacją o braku oferty w wysłanej wiadomości")
+  return 'pending';
+});
+
+Given('w teczce naprawy checkbox {string} ma wartość {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "w teczce naprawy checkbox "Oferta obsłużona" ma wartość "<wartosc_poprzednia>"")
+  return 'pending';
+});
+
+When('doradca zmienia wartość checkboxa {string} na {string}', async (value1, value2) => {
+  // TODO: implement this step (from feature step: "doradca zmienia wartość checkboxa "Oferta obsłużona" na "<wartosc_nowa>"")
+  return 'pending';
+});
+
+Given('w Historii zmian istnieją wpisy dotyczące innych pól teczki naprawy', async () => {
+  // TODO: implement this step (from feature step: "w Historii zmian istnieją wpisy dotyczące innych pól teczki naprawy")
+  return 'pending';
+});
+
+When('doradca dokonuje zmiany pola {string}', async (value) => {
+  // TODO: implement this step (from feature step: "doradca dokonuje zmiany pola "Oferta obsłużona"")
+  return 'pending';
+});
+
+Then('nowy wpis jest wyświetlany w tej samej sekcji i w tym samym formacie co istniejące wpisy Historii zmian', async () => {
+  // TODO: implement this step (from feature step: "nowy wpis jest wyświetlany w tej samej sekcji i w tym samym formacie co istniejące wpisy Historii zmian")
+  return 'pending';
+});
+
+Then('nie powstaje nowy widok ani osobna sekcja dla tego wpisu', async () => {
+  // TODO: implement this step (from feature step: "nie powstaje nowy widok ani osobna sekcja dla tego wpisu")
+  return 'pending';
+});
+
+Given('system automatycznie rejestruje zdarzenie {string} w Historii zmian', async (value) => {
+  // TODO: implement this step (from feature step: "system automatycznie rejestruje zdarzenie "<zdarzenie>" w Historii zmian")
+  return 'pending';
+});
+
+When('wpis zostaje zapisany', async () => {
+  // TODO: implement this step (from feature step: "wpis zostaje zapisany")
+  return 'pending';
+});
+
+Then('autorem wpisu jest {string}', async (value) => {
+  // TODO: implement this step (from feature step: "autorem wpisu jest "Video Service"")
+  return 'pending';
+});
