@@ -16,11 +16,6 @@ When('użytkownik otwiera okno „Edycja naprawy"', async () => {
   return 'pending';
 });
 
-When('użytkownik wybiera w polu „Przypisany blacharz{string}Jan Kowalski"', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik wybiera w polu „Przypisany blacharz" osobę "Jan Kowalski"")
-  return 'pending';
-});
-
 When('użytkownik zapisuje zmiany', async () => {
   // TODO: implement this step (from feature step: "użytkownik zapisuje zmiany")
   return 'pending';
@@ -36,38 +31,13 @@ Given('użytkownik edytuje naprawę prowadzoną w kontekście blacharskim', asyn
   return 'pending';
 });
 
-Then('pole „Przypisany blacharz" jest widoczne w oknie edycji naprawy', async () => {
-  // TODO: implement this step (from feature step: "pole „Przypisany blacharz" jest widoczne w oknie edycji naprawy")
-  return 'pending';
-});
-
-Then('pole „Przypisany blacharz" pozwala wybrać jedną osobę z rozwijanej listy', async () => {
-  // TODO: implement this step (from feature step: "pole „Przypisany blacharz" pozwala wybrać jedną osobę z rozwijanej listy")
-  return 'pending';
-});
-
 Given('do naprawy przypisano wcześniej blacharza {string}', async (value) => {
   // TODO: implement this step (from feature step: "do naprawy przypisano wcześniej blacharza "Jan Kowalski"")
   return 'pending';
 });
 
-When('użytkownik wybiera w polu „Przypisany blacharz{string}Adam Nowak"', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik wybiera w polu „Przypisany blacharz" osobę "Adam Nowak"")
-  return 'pending';
-});
-
 Then('naprawa nie ma już przypisanego blacharza {string}', async (value) => {
   // TODO: implement this step (from feature step: "naprawa nie ma już przypisanego blacharza "Jan Kowalski"")
-  return 'pending';
-});
-
-When('użytkownik czyści pole „Przypisany blacharz"', async () => {
-  // TODO: implement this step (from feature step: "użytkownik czyści pole „Przypisany blacharz"")
-  return 'pending';
-});
-
-Then('pole „Przypisany blacharz" dla naprawy jest puste', async () => {
-  // TODO: implement this step (from feature step: "pole „Przypisany blacharz" dla naprawy jest puste")
   return 'pending';
 });
 
@@ -83,11 +53,6 @@ Given('z tym kontekstem powiązany jest warsztat {string}', async (value) => {
 
 Given('w warsztacie {string} pracują blacharze {string}', async (value1, value2) => {
   // TODO: implement this step (from feature step: "w warsztacie "Warsztat Śródmieście" pracują blacharze "Jan Kowalski, Adam Nowak"")
-  return 'pending';
-});
-
-When('użytkownik rozwija pole „Przypisany blacharz"', async () => {
-  // TODO: implement this step (from feature step: "użytkownik rozwija pole „Przypisany blacharz"")
   return 'pending';
 });
 
@@ -136,31 +101,6 @@ When('użytkownik otwiera pełną teczkę naprawy', async () => {
   return 'pending';
 });
 
-When('użytkownik przechodzi do sekcji „Naprawa{string}', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik przechodzi do sekcji „Naprawa" w menu „Naprawa"")
-  return 'pending';
-});
-
-Then('w sekcji „Naprawa{string}', async (value) => {
-  // TODO: implement this step (from feature step: "w sekcji „Naprawa" widoczne jest pole „Blacharz przypisany"")
-  return 'pending';
-});
-
-Then('pole „Blacharz przypisany{string}Jan Kowalski"', async (value) => {
-  // TODO: implement this step (from feature step: "pole „Blacharz przypisany" pokazuje nazwę "Jan Kowalski"")
-  return 'pending';
-});
-
-Given('użytkownik edytuje sekcję „Naprawa" w pełnej teczce naprawy', async () => {
-  // TODO: implement this step (from feature step: "użytkownik edytuje sekcję „Naprawa" w pełnej teczce naprawy")
-  return 'pending';
-});
-
-Then('pole „Blacharz przypisany{string} pokazuje nazwę {string}', async (value1, value2) => {
-  // TODO: implement this step (from feature step: "pole „Blacharz przypisany" w sekcji „Naprawa" pokazuje nazwę "Adam Nowak"")
-  return 'pending';
-});
-
 Given('w BOK przypisano do naprawy blacharza {string} z warsztatu {string}', async (value1, value2) => {
   // TODO: implement this step (from feature step: "w BOK przypisano do naprawy blacharza "Jan Kowalski" z warsztatu "Warsztat Śródmieście"")
   return 'pending';
@@ -168,11 +108,6 @@ Given('w BOK przypisano do naprawy blacharza {string} z warsztatu {string}', asy
 
 When('naprawa zostaje przekazana do warsztatu {string}', async (value) => {
   // TODO: implement this step (from feature step: "naprawa zostaje przekazana do warsztatu "Warsztat Mokotów"")
-  return 'pending';
-});
-
-When('użytkownik warsztatu {string} otwiera naprawę', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik warsztatu "Warsztat Mokotów" otwiera naprawę")
   return 'pending';
 });
 
@@ -191,16 +126,6 @@ When('użytkownik warsztatu {string} otwiera okno „Edycja naprawy"', async (va
   return 'pending';
 });
 
-Then('pole „Przypisany blacharz{string}Jan Kowalski"', async (value) => {
-  // TODO: implement this step (from feature step: "pole „Przypisany blacharz" nadal pokazuje "Jan Kowalski"")
-  return 'pending';
-});
-
-Then('rozwinięta lista „Przypisany blacharz{string}Warsztat Mokotów"', async (value) => {
-  // TODO: implement this step (from feature step: "rozwinięta lista „Przypisany blacharz" zawiera blacharzy warsztatu "Warsztat Mokotów"")
-  return 'pending';
-});
-
 Given('naprawa ma przypisanego kosztorysanta {string}', async (value) => {
   // TODO: implement this step (from feature step: "naprawa ma przypisanego kosztorysanta "Ewa Lewandowska"")
   return 'pending';
@@ -208,36 +133,6 @@ Given('naprawa ma przypisanego kosztorysanta {string}', async (value) => {
 
 When('użytkownik otwiera kontekst naprawy', async () => {
   // TODO: implement this step (from feature step: "użytkownik otwiera kontekst naprawy")
-  return 'pending';
-});
-
-When('użytkownik przechodzi do sekcji „Naprawa"', async () => {
-  // TODO: implement this step (from feature step: "użytkownik przechodzi do sekcji „Naprawa"")
-  return 'pending';
-});
-
-Then('w sekcji „Naprawa{string}Jan Kowalski"', async (value) => {
-  // TODO: implement this step (from feature step: "w sekcji „Naprawa" widoczna jest nazwa blacharza "Jan Kowalski"")
-  return 'pending';
-});
-
-Then('w sekcji „Naprawa{string}Ewa Lewandowska"', async (value) => {
-  // TODO: implement this step (from feature step: "w sekcji „Naprawa" widoczna jest nazwa kosztorysanta "Ewa Lewandowska"")
-  return 'pending';
-});
-
-When('użytkownik otwiera widok {string}', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik otwiera widok "<widok>"")
-  return 'pending';
-});
-
-Then('pole blacharza w tym widoku jest puste', async () => {
-  // TODO: implement this step (from feature step: "pole blacharza w tym widoku jest puste")
-  return 'pending';
-});
-
-Given('użytkownik otwiera pełną teczkę naprawy w sekcji „Naprawa"', async () => {
-  // TODO: implement this step (from feature step: "użytkownik otwiera pełną teczkę naprawy w sekcji „Naprawa"")
   return 'pending';
 });
 
@@ -251,18 +146,8 @@ Then('pojawia się tooltip z tekstem „<pole>"', async () => {
   return 'pending';
 });
 
-Then('pole „Blacharz przypisany" jest oznaczone ikoną klucza', async () => {
-  // TODO: implement this step (from feature step: "pole „Blacharz przypisany" jest oznaczone ikoną klucza")
-  return 'pending';
-});
-
 Then('pole „Kosztorysant odpowiedzialny" jest oznaczone ikoną doradcy', async () => {
   // TODO: implement this step (from feature step: "pole „Kosztorysant odpowiedzialny" jest oznaczone ikoną doradcy")
-  return 'pending';
-});
-
-Given('pole „Blacharz przypisany" jest widoczne dla użytkownika', async () => {
-  // TODO: implement this step (from feature step: "pole „Blacharz przypisany" jest widoczne dla użytkownika")
   return 'pending';
 });
 
@@ -271,12 +156,132 @@ Given('użytkownik ma ustawiony język interfejsu {string}', async (value) => {
   return 'pending';
 });
 
-When('użytkownik wyświetla tekst etykiety pola „Blacharz przypisany"', async () => {
-  // TODO: implement this step (from feature step: "użytkownik wyświetla tekst etykiety pola „Blacharz przypisany"")
+Then('użytkownik widzi nazwę pola {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik widzi nazwę pola "<tlumaczenie>"")
   return 'pending';
 });
 
-Then('użytkownik widzi nazwę pola {string}', async (value) => {
-  // TODO: implement this step (from feature step: "użytkownik widzi nazwę pola "<tlumaczenie>"")
+When('użytkownik działu {string} otwiera kontekst naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik działu "<dzial>" otwiera kontekst naprawy")
+  return 'pending';
+});
+
+When('użytkownik warsztatu {string} otwiera pełną teczkę naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik warsztatu "Warsztat Mokotów" otwiera pełną teczkę naprawy")
+  return 'pending';
+});
+
+When('użytkownik wybiera w polu \'Przypisany blacharz\' osobę {string}', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik wybiera w polu \'Przypisany blacharz\' osobę "Jan Kowalski"")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' jest widoczne w oknie edycji naprawy', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' jest widoczne w oknie edycji naprawy")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' pozwala wybrać jedną osobę z rozwijanej listy', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' pozwala wybrać jedną osobę z rozwijanej listy")
+  return 'pending';
+});
+
+When('użytkownik czyści pole \'Przypisany blacharz\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik czyści pole \'Przypisany blacharz\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' dla naprawy jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' dla naprawy jest puste")
+  return 'pending';
+});
+
+When('użytkownik rozwija pole \'Przypisany blacharz\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik rozwija pole \'Przypisany blacharz\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' nadal pokazuje {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' nadal pokazuje "Jan Kowalski"")
+  return 'pending';
+});
+
+Then('rozwinięta lista \'Przypisany blacharz\' zawiera blacharzy warsztatu {string}', async (value) => {
+  // TODO: implement this step (from feature step: "rozwinięta lista \'Przypisany blacharz\' zawiera blacharzy warsztatu "Warsztat Mokotów"")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' jest puste")
+  return 'pending';
+});
+
+When('użytkownik przechodzi do sekcji \'Naprawa\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik przechodzi do sekcji \'Naprawa\'")
+  return 'pending';
+});
+
+Then('w sekcji \'Naprawa\' widoczna jest nazwa blacharza {string}', async (value) => {
+  // TODO: implement this step (from feature step: "w sekcji \'Naprawa\' widoczna jest nazwa blacharza "Jan Kowalski"")
+  return 'pending';
+});
+
+Then('w sekcji \'Naprawa\' widoczna jest nazwa kosztorysanta {string}', async (value) => {
+  // TODO: implement this step (from feature step: "w sekcji \'Naprawa\' widoczna jest nazwa kosztorysanta "Ewa Lewandowska"")
+  return 'pending';
+});
+
+Then('pole blacharza w sekcji \'Naprawa\' jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole blacharza w sekcji \'Naprawa\' jest puste")
+  return 'pending';
+});
+
+When('użytkownik przechodzi do sekcji \'Naprawa\' w menu \'Naprawa\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik przechodzi do sekcji \'Naprawa\' w menu \'Naprawa\'")
+  return 'pending';
+});
+
+Then('w sekcji \'Naprawa\' widoczne jest pole \'Przypisany blacharz\'', async () => {
+  // TODO: implement this step (from feature step: "w sekcji \'Naprawa\' widoczne jest pole \'Przypisany blacharz\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' pokazuje nazwę {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' pokazuje nazwę "Jan Kowalski"")
+  return 'pending';
+});
+
+Given('użytkownik edytuje sekcję \'Naprawa\' w pełnej teczce naprawy', async () => {
+  // TODO: implement this step (from feature step: "użytkownik edytuje sekcję \'Naprawa\' w pełnej teczce naprawy")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' w sekcji \'Naprawa\' pokazuje nazwę {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' w sekcji \'Naprawa\' pokazuje nazwę "Adam Nowak"")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' w sekcji \'Naprawa\' jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' w sekcji \'Naprawa\' jest puste")
+  return 'pending';
+});
+
+Given('użytkownik otwiera pełną teczkę naprawy w sekcji \'Naprawa\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik otwiera pełną teczkę naprawy w sekcji \'Naprawa\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany blacharz\' jest oznaczone ikoną klucza', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' jest oznaczone ikoną klucza")
+  return 'pending';
+});
+
+Given('pole \'Przypisany blacharz\' jest widoczne dla użytkownika', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany blacharz\' jest widoczne dla użytkownika")
+  return 'pending';
+});
+
+When('użytkownik wyświetla tekst etykiety pola \'Przypisany blacharz\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik wyświetla tekst etykiety pola \'Przypisany blacharz\'")
   return 'pending';
 });
