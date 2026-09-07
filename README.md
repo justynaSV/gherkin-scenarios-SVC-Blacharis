@@ -104,7 +104,15 @@ This parses every `.feature` file already in that module folder and generates st
 
 ## Use The Claude Code Command
 
-1. Open Claude Code in this repository.
+Claude Code is a CLI, installed separately from VS Code (needs Node.js 18+):
+
+```sh
+npm install -g @anthropic-ai/claude-code
+```
+
+Then, from this repository's folder:
+
+1. Run `claude` and sign in with your Claude account when prompted (first run only).
 2. Type:
 
 ```text
@@ -118,6 +126,11 @@ This parses every `.feature` file already in that module folder and generates st
 
 The command lives at `.claude/commands/gherkin-scenarios.md` and follows the same rules as the Copilot prompt. `CLAUDE.md`
 carries the repository conventions Claude Code reads automatically, mirroring `.github/copilot-instructions.md`.
+
+To resolve Jira links/keys automatically, configure the Atlassian MCP server. This repository ships a `.mcp.json`
+that defines it, so Claude Code offers to enable it on first run; then run `/mcp` and authenticate with your
+Atlassian account. Full steps for both Copilot and Claude Code are in `docs/getting-started.md` and
+`STEP-BY-STEP-GUIDE.md`.
 
 ## Recommended User Story Format
 

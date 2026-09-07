@@ -12,8 +12,12 @@ This guide explains how to write scenarios from user stories with Copilot or Cla
 
 ### Required and recommended extensions
 
-- **GitHub Copilot Chat** (`GitHub.copilot-chat`) — required to run the `/gherkin-scenarios` prompt.
+- **GitHub Copilot Chat** (`GitHub.copilot-chat`) — required to run the `/gherkin-scenarios` prompt with Copilot.
 - **Cucumber** (`CucumberOpen.cucumber-official`) — required for `.feature` file syntax highlighting, step autocompletion, and jumping from a Gherkin step to its step definition. The repository's `.vscode/settings.json` already configures `cucumber.glue` and `cucumber.features` for this extension.
+
+If you want to use Claude instead of Copilot, also install:
+
+- **Claude Code for VS Code** (`anthropic.claude-code`) — runs the `/gherkin-scenarios` command through Claude Code inside VS Code. It still needs the Claude Code CLI installed (see [Using Claude Code instead](#using-claude-code-instead) below); the extension launches and embeds it.
 
 These extensions are listed in `.vscode/extensions.json`, so VS Code recommends them automatically when the folder is opened.
 
@@ -28,6 +32,34 @@ The prompt file lives at `.github/prompts/gherkin-scenarios.prompt.md`. In Copil
 The same workflow is available in Claude Code via the matching command at `.claude/commands/gherkin-scenarios.md`,
 usable as `/gherkin-scenarios` in a Claude Code session opened in this repository. `CLAUDE.md` at the repository
 root carries the same repository conventions as `.github/copilot-instructions.md`.
+
+Claude Code is a command-line tool, installed separately from VS Code. You need Node.js 18 or newer (this
+repository already requires 22.12.0+), then install it globally:
+
+```sh
+npm install -g @anthropic-ai/claude-code
+```
+
+Alternative native installers, if you prefer not to use npm:
+
+```sh
+# macOS / Linux
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Windows PowerShell
+irm https://claude.ai/install.ps1 | iex
+```
+
+Start it from the repository folder and follow the browser prompt to sign in with your Claude account the first
+time:
+
+```sh
+cd <this-repo>
+claude
+```
+
+Inside the session, `/gherkin-scenarios` runs the generation command and `/mcp` manages MCP servers (see the
+Jira/MCP setup below).
 
 ## 2. Run validation
 
@@ -75,14 +107,43 @@ If some information is missing, the prompt should ask follow-up questions before
 
 ### Optional: use a Jira link instead of pasting the story
 
-Instead of pasting the story text, you can give Copilot a Jira issue link (e.g. `https://<site>.atlassian.net/browse/PROJ-123`) or bare key (`PROJ-123`) in step 4. One-time setup per machine:
+Instead of pasting the story text, you can give the assistant a Jira issue link (e.g. `https://<site>.atlassian.net/browse/PROJ-123`) or bare key (`PROJ-123`) in step 4. It fetches the issue through the Atlassian MCP server (`https://mcp.atlassian.com/v1/mcp`). This is a one-time setup per machine.
+
+#### VS Code (Copilot)
 
 1. Open the Command Palette (`Ctrl+Shift+P`) and run **MCP: Add Server**.
 2. Choose **HTTP**, enter name `atlassian` and URL `https://mcp.atlassian.com/v1/mcp`, then pick the **Global** scope so it's available in every repo, not just this one.
 3. Run **MCP: List Servers**, select `atlassian`, and choose **Start Server** — this opens a browser window to log in with your Atlassian/Jira Cloud account. Complete the login once.
 4. From then on, pasting a Jira link or key into `/gherkin-scenarios` fetches the summary, description, acceptance criteria, and sub-tasks automatically.
 
-If you skip this setup, just paste the story text as shown above.
+#### Claude Code
+
+This repository ships a `.mcp.json` at its root that already defines the `atlassian` HTTP server, so Claude Code
+picks it up automatically — you only need to approve it and log in:
+
+1. Start Claude Code in the repository folder (`claude`). The first time it sees `.mcp.json` it asks whether to
+   use the project's MCP servers — approve it.
+2. Run `/mcp`, select `atlassian`, and choose **Authenticate** (or **Reconnect**). A browser window opens to log
+   in with your Atlassian/Jira Cloud account. Complete the login once; the token is cached for future sessions.
+3. `/mcp` should now show `atlassian` as **connected**.
+4. From then on, pasting a Jira link or key into `/gherkin-scenarios` fetches the summary, description, acceptance
+   criteria, and sub-tasks automatically.
+
+If `.mcp.json` is missing or you want the server available in every repository, add it from the command line
+instead:
+
+```sh
+# project scope: writes/updates .mcp.json in this repo (shared with the team)
+claude mcp add --transport http --scope project atlassian https://mcp.atlassian.com/v1/mcp
+
+# user scope: available in all your local repositories, not committed
+claude mcp add --transport http --scope user atlassian https://mcp.atlassian.com/v1/mcp
+```
+
+Then run `/mcp` and authenticate as in step 2 above. `claude mcp list` shows the configured servers and their
+connection status.
+
+If you skip this setup entirely, just paste the story text as shown above.
 
 ## 4. Generate a feature file with Copilot
 
