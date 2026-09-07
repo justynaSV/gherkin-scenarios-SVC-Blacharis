@@ -285,3 +285,63 @@ When('użytkownik wyświetla tekst etykiety pola \'Przypisany blacharz\'', async
   // TODO: implement this step (from feature step: "użytkownik wyświetla tekst etykiety pola \'Przypisany blacharz\'")
   return 'pending';
 });
+
+When('użytkownik drukuje kartę pracy z sekcji \'Szkody\'', async () => {
+  // TODO: implement this step (from feature step: "użytkownik drukuje kartę pracy z sekcji \'Szkody\'")
+  return 'pending';
+});
+
+Then('wydruk karty pracy zawiera pole \'Przypisany BL\'', async () => {
+  // TODO: implement this step (from feature step: "wydruk karty pracy zawiera pole \'Przypisany BL\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany BL\' na wydruku pokazuje wartość {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany BL\' na wydruku pokazuje wartość "Jan Kowalski"")
+  return 'pending';
+});
+
+Then('wydruk karty pracy nie zawiera pola \'Zaplanowany\'', async () => {
+  // TODO: implement this step (from feature step: "wydruk karty pracy nie zawiera pola \'Zaplanowany\'")
+  return 'pending';
+});
+
+Then('pole \'Przypisany BL\' na wydruku jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole \'Przypisany BL\' na wydruku jest puste")
+  return 'pending';
+});
+
+Given('użytkownik wybrał w polu \'Przypisany blacharz\' osobę {string} podczas edycji naprawy', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik wybrał w polu \'Przypisany blacharz\' osobę "Adam Nowak" podczas edycji naprawy")
+  return 'pending';
+});
+
+Given('naprawa ma w polu \'Rodzaj utylizacji części\' wybraną wartość {string}', async (value) => {
+  // TODO: implement this step (from feature step: "naprawa ma w polu \'Rodzaj utylizacji części\' wybraną wartość "<rodzaj_utylizacji>"")
+  return 'pending';
+});
+
+Then('wydruk karty pracy zawiera w sekcji \'Dodatkowe informacje\' pole \'Części\'', async () => {
+  // TODO: implement this step (from feature step: "wydruk karty pracy zawiera w sekcji \'Dodatkowe informacje\' pole \'Części\'")
+  return 'pending';
+});
+
+Then('pole \'Części\' na wydruku pokazuje wartość {string}', async (value) => {
+  // TODO: implement this step (from feature step: "pole \'Części\' na wydruku pokazuje wartość "<rodzaj_utylizacji>"")
+  return 'pending';
+});
+
+Given('naprawa ma puste pole \'Rodzaj utylizacji części\'', async () => {
+  // TODO: implement this step (from feature step: "naprawa ma puste pole \'Rodzaj utylizacji części\'")
+  return 'pending';
+});
+
+Then('pole \'Części\' na wydruku jest puste', async () => {
+  // TODO: implement this step (from feature step: "pole \'Części\' na wydruku jest puste")
+  return 'pending';
+});
+
+Given('użytkownik wybrał w polu \'Rodzaj utylizacji części\' wartość {string} podczas edycji szkody', async (value) => {
+  // TODO: implement this step (from feature step: "użytkownik wybrał w polu \'Rodzaj utylizacji części\' wartość "zwrot do klienta" podczas edycji szkody")
+  return 'pending';
+});
