@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide explains how to write scenarios from user stories with Copilot in this repository, keep traceability up to date, and add step definitions when scenarios should become executable.
+This guide explains how to write scenarios from user stories with Copilot or Claude Code in this repository, keep traceability up to date, and add step definitions when scenarios should become executable.
 
 ## 1. Open the repository in VS Code
 
@@ -22,6 +22,12 @@ The prompt file lives at `.github/prompts/gherkin-scenarios.prompt.md`. In Copil
 ```text
 /gherkin-scenarios
 ```
+
+### Using Claude Code instead
+
+The same workflow is available in Claude Code via the matching command at `.claude/commands/gherkin-scenarios.md`,
+usable as `/gherkin-scenarios` in a Claude Code session opened in this repository. `CLAUDE.md` at the repository
+root carries the same repository conventions as `.github/copilot-instructions.md`.
 
 ## 2. Run validation
 
@@ -108,7 +114,7 @@ npm run create:module -- <module-folder>
 
 This creates the module folder under `features/` (if it does not exist yet) and generates a matching `features/~step_definitions/<module-folder>.steps.js` with one stub per **unique step actually used in that module's feature files** (converted to a Cucumber Expression, e.g. `{string}`/`{int}` placeholders) — not generic placeholder text. Re-run the same command after editing a feature file; it only appends the steps that are still missing, so it never overwrites work you've already implemented.
 
-The Copilot prompt is configured to run `npm run create:module -- <module-folder>` automatically after saving a feature file in a new module folder.
+The Copilot prompt (and the equivalent Claude Code command) is configured to run `npm run create:module -- <module-folder>` automatically after saving a feature file in a new module folder.
 
 ## 5. Update traceability
 

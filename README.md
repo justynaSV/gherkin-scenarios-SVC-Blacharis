@@ -22,6 +22,7 @@ For day-to-day work, the short version is:
 ## What This Repository Contains
 
 - The `/gherkin-scenarios` Copilot prompt for generating Gherkin `.feature` files from pasted user stories, at `.github/prompts/gherkin-scenarios.prompt.md`.
+- A matching Claude Code slash command at `.claude/commands/gherkin-scenarios.md`, plus `CLAUDE.md`, so the same workflow runs in Claude Code.
 - A guided workflow document in `docs/getting-started.md`.
 - User story and feature templates in `templates/`, used when generating new scenarios.
 - Feature files grouped into module folders under `features/` (for example `features/calendar icons/`, `features/potwierdzenie-wizyty/`).
@@ -34,6 +35,11 @@ For day-to-day work, the short version is:
 ## Repository Layout
 
 ```text
+.claude/
+  commands/
+    gherkin-scenarios.md
+CLAUDE.md
+
 .github/
   prompts/
     gherkin-scenarios.prompt.md
@@ -95,6 +101,23 @@ npm run create:module -- <module-folder>
 ```
 
 This parses every `.feature` file already in that module folder and generates stub functions in the matching `.steps.js` file using the real Gherkin step text as the Cucumber Expression (not generic placeholders). Steps that already exist in the file are left untouched; only missing ones are appended, so re-running it after editing a feature is safe.
+
+## Use The Claude Code Command
+
+1. Open Claude Code in this repository.
+2. Type:
+
+```text
+/gherkin-scenarios
+```
+
+3. Paste a user story below the command.
+4. Answer follow-up questions about business context, process flow, business rules, or acceptance criteria.
+5. Review the generated assumptions, tags, scenarios, and suggested save path.
+6. Reply "yes" to the confirmation question before Claude Code creates folders or saves the `.feature` file.
+
+The command lives at `.claude/commands/gherkin-scenarios.md` and follows the same rules as the Copilot prompt. `CLAUDE.md`
+carries the repository conventions Claude Code reads automatically, mirroring `.github/copilot-instructions.md`.
 
 ## Recommended User Story Format
 

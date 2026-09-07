@@ -1,5 +1,7 @@
 # Repository conventions
 
+This file mirrors `.github/copilot-instructions.md` for Claude Code. Keep both in sync.
+
 - Maintainer note (only applies if sibling repos are actually present, e.g. in the maintainer's multi-root
   workspace — ignore this bullet entirely if this repo is checked out on its own, which is the normal case for
   end users): this repo is one of 4 near-identical siblings — `gherkin-scenarios` (template),
@@ -17,9 +19,10 @@
 - After saving a new or updated `.feature` file, also run `npm run trace:generate` to regenerate `docs/traceability.md`
   from the `# Zadanie`/`# AC` comments and tags. `docs/traceability.md` is generated — never edit it by hand, and
   `npm run validate` fails if it is stale.
-- File-save confirmations must use the `vscode_askQuestions` tool with Yes/No options, not a plain chat question.
-- If given a Jira URL or bare issue key (e.g. `PROJ-123`) instead of pasted user-story text, use the Atlassian MCP
-  tools to fetch the issue content first; only ask the user to paste text if MCP is unavailable or fails.
+- File-save confirmations must be an explicit plain-text Yes/No question asked directly in chat before writing
+  anything to disk; never create folders, feature files, or step-definition files without that confirmation.
+- If given a Jira URL or bare issue key (e.g. `PROJ-123`) instead of pasted user-story text, use configured Atlassian
+  MCP tools to fetch the issue content first; only ask the user to paste text if MCP is unavailable or fails.
 - npm scripts: `bdd` / `bdd:dry-run` / `bdd:regression` / `bdd:smoke` run Cucumber profiles. `lint` (aliased by
   `validate`) runs `scripts/lint.js`, which runs the Gherkin-style, feature-language, duplicate-step and
   traceability-freshness checks in one process; each is also runnable on its own via `lint:gherkin` / `lint:language`
@@ -27,7 +30,7 @@
   catch undefined steps.
 - Do not recreate a local web UI (`tools/ui`) — it was added then intentionally removed as not useful; don't add it
   back unless explicitly asked again.
-- The `/gherkin-scenarios` slash command is available for both assistants: `.github/prompts/gherkin-scenarios.prompt.md`
-  for GitHub Copilot Chat in VS Code, and `.claude/commands/gherkin-scenarios.md` for Claude Code (which also reads
-  `CLAUDE.md`, mirroring this file). Keep the generation rules in sync between the two prompt files; only
-  tool-specific bits (confirmation mechanism, argument placeholder) should differ.
+- The `/gherkin-scenarios` slash command is available for both assistants: `.claude/commands/gherkin-scenarios.md`
+  for Claude Code, and `.github/prompts/gherkin-scenarios.prompt.md` for GitHub Copilot Chat in VS Code. The two
+  files carry the same generation rules; only the tool-specific bits (confirmation mechanism, argument placeholder)
+  differ. Update both together.
